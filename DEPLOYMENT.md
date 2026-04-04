@@ -44,7 +44,7 @@ Use **one or both**. With both, **auto** tries Gemini first, then OpenAI if Gemi
 
 ### For GitHub Pages:
 - [ ] Repository pushed to GitHub
-- [ ] Pages enabled in repository settings
+- [ ] **Settings → Pages → Build and deployment**: source **GitHub Actions** (workflow `.github/workflows/deploy-pages.yml` uses `actions/deploy-pages@v5` / Node 24, avoiding deprecated Node 20 on `v4`)
 - [ ] Verify chatbot is properly hidden (security check)
 
 ## 🔧 Local Development
