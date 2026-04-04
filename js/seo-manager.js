@@ -23,6 +23,8 @@ export class SEOManager {
         document.querySelector('meta[property="twitter:card"]').content = seo.twitter_card;
         document.querySelector('meta[property="twitter:url"]').content = seo.base_url;
 
+        this.updateFavicon(config);
+
         // Extract GitHub username from social links for JSON-LD
         const githubLink = config.social_links?.find(link => link.icon === 'github');
         const githubUrl = githubLink?.url || `https://github.com/${config.github_username || ''}`;
@@ -50,5 +52,30 @@ export class SEOManager {
         }
         
         document.querySelector('script[type="application/ld+json"]').textContent = JSON.stringify(jsonLD, null, 2);
+    }
+
+    /** Tab / bookmark icon: GitHub serves the public avatar at /{username}.png */
+    updateFavicon(config) {
+        const username = (config.github_username || '').trim();
+        if (!username) return;
+
+        const href = `https://github.com/${username}.png`;
+
+        let iconLink = document.querySelector('link[rel="icon"]');
+        if (!iconLink) {
+            iconLink = document.createElement('link');
+            iconLink.rel = 'icon';
+            document.head.appendChild(iconLink);
+        }
+        iconLink.type = 'image/png';
+        iconLink.href = href;
+
+        let apple = document.querySelector('link[rel="apple-touch-icon"]');
+        if (!apple) {
+            apple = document.createElement('link');
+            apple.rel = 'apple-touch-icon';
+            document.head.appendChild(apple);
+        }
+        apple.href = href;
     }
 }
