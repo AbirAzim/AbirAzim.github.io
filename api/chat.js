@@ -2,7 +2,8 @@
  * POST /api/chat — Gemini proxy. API key stays in Vercel env only.
  * Body: { message: string, history?: { role: 'user'|'model', text: string }[] }
  */
-const DEFAULT_MODELS = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-flash-8b'];
+/* Try smaller / separate free-tier pools before 2.0 (often hits quota: 0 first). */
+const DEFAULT_MODELS = ['gemini-1.5-flash-8b', 'gemini-1.5-flash', 'gemini-2.0-flash'];
 
 async function readJsonBody(req) {
     if (req.body != null && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
