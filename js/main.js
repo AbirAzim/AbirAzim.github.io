@@ -10,6 +10,7 @@ import { FooterManager } from './footer-manager.js';
 import { FluidBackground } from './fluid-background.js';
 import { RainLayer } from './rain-layer.js';
 import { ChatbotManager } from './chatbot.js';
+import { initMiniTerminal } from './mini-terminal.js';
 
 function initPayoneerPanel() {
     const btn = document.getElementById('payoneer-copy');
@@ -60,6 +61,7 @@ class PortfolioApp {
             // Initialize chatbot (conditionally based on API key)
             await this.chatbotManager.init();
             initPayoneerPanel();
+            initMiniTerminal();
 
             // Load configuration
             const config = await this.configManager.loadConfig();

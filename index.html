@@ -29,7 +29,7 @@
     <link rel="preconnect" href="https://avatars.githubusercontent.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     
     <!-- Preload for better performance -->
     <link rel="preload" href="js/fluid-background.js" as="script">
@@ -79,6 +79,25 @@
             <img src="" alt="Profile picture" class="profile-img" loading="eager">
             <h1></h1>
             <p class="tagline"></p>
+
+            <div class="mini-terminal" id="mini-terminal" aria-hidden="true">
+                <div class="mini-terminal-titlebar">
+                    <span class="mini-terminal-dot" aria-hidden="true"></span>
+                    <span class="mini-terminal-dot mini-terminal-dot--amber" aria-hidden="true"></span>
+                    <span class="mini-terminal-dot mini-terminal-dot--green" aria-hidden="true"></span>
+                    <span class="mini-terminal-title">bash</span>
+                </div>
+                <div class="mini-terminal-screen">
+                    <div class="mini-terminal-history" id="mini-terminal-history"></div>
+                    <div class="mini-terminal-current" id="mini-terminal-current">
+                        <span class="mini-terminal-line-prefix">
+                            <span class="mini-terminal-prompt-user">abir@portfolio</span><span class="mini-terminal-prompt-muted">:</span><span class="mini-terminal-prompt-path">~</span><span class="mini-terminal-prompt-muted">$ </span>
+                        </span>
+                        <span id="mini-terminal-typed"></span><span class="mini-terminal-cursor" aria-hidden="true">▋</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="header-resume-wrap" id="header-resume-wrap" hidden>
                 <a
                     id="resume-download-btn"
