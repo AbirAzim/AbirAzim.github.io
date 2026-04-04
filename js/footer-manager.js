@@ -45,22 +45,22 @@ export class FooterManager {
             },
             {
                 name: 'Hashnode',
-                url: 'https://hashnode.com/@ShishirSrivastav',
+                url: 'https://hashnode.com/@AbirAzim',
                 icon: 'hashnode'
             },
             {
                 name: 'Topmate',
-                url: 'https://topmate.io/shishir_srivastav',
+                url: 'https://topmate.io/abirazimbadhon',
                 icon: 'topmate'
             },
             {
                 name: 'Credly',
-                url: 'https://www.credly.com/users/shishir-srivastav-who',
+                url: 'https://www.credly.com/users/abir-azim-badhon',
                 icon: 'credly'
             },
             {
                 name: 'LinkedIn Follow',
-                url: 'https://linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=shishir-srivastav',
+                url: 'https://linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=abir-azim-badhon',
                 icon: 'linkedin'
             }
         ];
@@ -78,7 +78,7 @@ export class FooterManager {
         if (config.github_username) {
             const sourceCodeLink = this.createSocialLink({
                 name: 'Source Code',
-                url: `https://github.com/${config.github_username}/developer-portfolio`,
+                url: `https://github.com/${config.github_username}/${config.github_username}.github.io`,
                 icon: 'code'
             });
             if (sourceCodeLink) {

@@ -1,11 +1,11 @@
-# Shishir Srivastav - AI-Powered Developer Portfolio
+# Abir Azim Badhon — AI-Powered Developer Portfolio
 
 <div align="left">
   
-[![Portfolio](https://img.shields.io/badge/🌐_Visit_Portfolio-Live-brightgreen?style=for-the-badge)](https://Shishir420-GIT.github.io)
-[![Vercel](https://img.shields.io/badge/Vercel-Full_Features-000000?style=for-the-badge&logo=vercel)](https://shishirsrivastav.vercel.app)
-[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github)](https://github.com/Shishir420-GIT)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/shishir-srivastav)
+[![Portfolio](https://img.shields.io/badge/🌐_Visit_Portfolio-Live-brightgreen?style=for-the-badge)](https://AbirAzim.github.io)
+[![Vercel](https://img.shields.io/badge/Vercel-Full_Features-000000?style=for-the-badge&logo=vercel)](https://abirazim.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github)](https://github.com/AbirAzim)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/abir-azim-badhon)
 
 </div>
 
@@ -40,12 +40,12 @@ A cutting-edge portfolio featuring AI-powered chatbot, cyberpunk aesthetics, and
 ## 🚀 Deployment Options
 
 ### GitHub Pages (Static)
-- **URL**: [https://Shishir420-GIT.github.io](https://Shishir420-GIT.github.io)
+- **URL**: [https://AbirAzim.github.io](https://AbirAzim.github.io)
 - **Features**: Full portfolio without chatbot (security-focused)
 - **Setup**: Automatic deployment from main branch
 
 ### Vercel (Recommended)
-- **URL**: [shishirsrivastav.vercel.app](https://shishirsrivastav.vercel.app)
+- **URL**: [abirazim.vercel.app](https://abirazim.vercel.app)
 - **Features**: Complete experience with AI chatbot
 - **Setup**: Connect repository + add environment variables
 
@@ -63,8 +63,8 @@ A cutting-edge portfolio featuring AI-powered chatbot, cyberpunk aesthetics, and
 ### For Local Development:
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Shishir420-GIT/Portfolio.git
-   cd Portfolio
+   git clone https://github.com/AbirAzim/AbirAzim.github.io.git
+   cd AbirAzim.github.io
    ```
 2. **Create `.env` file** (copy from `.env.example`)
 3. **Add your API key** to `.env`
@@ -74,9 +74,9 @@ A cutting-edge portfolio featuring AI-powered chatbot, cyberpunk aesthetics, and
 
 <div align="left">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Shishir420-GIT&theme=dark&hide_border=true&include_all_commits=true&count_private=true)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=AbirAzim&theme=dark&hide_border=true&include_all_commits=true&count_private=true)
 
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Shishir420-GIT&theme=dark&hide_border=true&include_all_commits=true&count_private=true&layout=compact)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=AbirAzim&theme=dark&hide_border=true&include_all_commits=true&count_private=true&layout=compact)
 
 </div>
 
@@ -84,9 +84,9 @@ A cutting-edge portfolio featuring AI-powered chatbot, cyberpunk aesthetics, and
 
 Let's connect and build something amazing together! 🚀
 
-- 🌐 **Portfolio**: [https://Shishir420-GIT.github.io](https://Shishir420-GIT.github.io)
-- 💻 **GitHub**: [https://github.com/Shishir420-GIT](https://github.com/Shishir420-GIT)
-- 🔗 **LinkedIn**: [https://www.linkedin.com/in/shishir-srivastav](https://www.linkedin.com/in/shishir-srivastav)
+- 🌐 **Portfolio**: [https://AbirAzim.github.io](https://AbirAzim.github.io)
+- 💻 **GitHub**: [https://github.com/AbirAzim](https://github.com/AbirAzim)
+- 🔗 **LinkedIn**: [https://www.linkedin.com/in/abir-azim-badhon](https://www.linkedin.com/in/abir-azim-badhon)
 
 ---
 Next plan is to move to a mordern framework.
