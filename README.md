@@ -74,9 +74,9 @@ A cutting-edge portfolio featuring AI-powered chatbot, cyberpunk aesthetics, and
 
 <div align="left">
 
-![GitHub Stats](https://readme-stats-github.vercel.app/api?username=AbirAzim&theme=dark&hide_border=true&include_all_commits=true&count_private=true)
+![GitHub Stats](https://github-readme-stats-alpha-virid.vercel.app/api?username=AbirAzim&theme=dark&hide_border=true&include_all_commits=true)
 
-![Top Languages](https://readme-stats-github.vercel.app/api/top-langs/?username=AbirAzim&theme=dark&hide_border=true&include_all_commits=true&count_private=true&layout=compact)
+![Top Languages](https://github-readme-stats-alpha-virid.vercel.app/api/top-langs/?username=AbirAzim&theme=dark&hide_border=true&layout=compact)
 
 </div>
 
