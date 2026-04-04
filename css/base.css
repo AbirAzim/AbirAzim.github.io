@@ -303,6 +303,14 @@ html {
     -webkit-overflow-scrolling: touch;
 }
 
+/* Mobile WebKit: two nested vertical scroll containers (html + body) often swallow gestures */
+@media (max-width: 768px) {
+    body {
+        overflow-y: visible;
+        touch-action: pan-y pinch-zoom;
+    }
+}
+
 /* Selection styles */
 ::selection {
     background-color: var(--primary-color);

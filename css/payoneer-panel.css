@@ -138,17 +138,23 @@
 }
 
 @media (max-width: 768px) {
+    /* Out of fixed layer — full-width invisible hit boxes on iOS were still blocking scroll */
     .payoneer-panel {
-        right: 1rem;
-        bottom: calc(1rem + 70px + 4.5rem);
+        position: relative;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        width: min(320px, 100%);
+        max-width: 100%;
+        margin: var(--space-8) auto var(--space-12);
+        z-index: auto;
     }
 }
 
 @media (max-width: 480px) {
     .payoneer-panel {
-        right: 0.8rem;
-        bottom: calc(0.8rem + 65px + 4.25rem);
-        width: min(220px, calc(100vw - 1.6rem));
+        width: 100%;
+        margin: var(--space-6) auto var(--space-10);
     }
 
     .payoneer-panel-inner {

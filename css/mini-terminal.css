@@ -2,6 +2,11 @@
 .mini-terminal {
     position: relative;
     z-index: 2;
+    /* Own compositing layer — avoids rain/header blend modes washing out chrome on Safari */
+    isolation: isolate;
+    mix-blend-mode: normal;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     display: block;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
