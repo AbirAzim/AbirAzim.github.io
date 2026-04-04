@@ -268,14 +268,19 @@ export class FluidBackground {
             this.updatePointer(x, y);
         });
 
-        // Touch events
-        document.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const x = touch.clientX / window.innerWidth;
-            const y = 1.0 - touch.clientY / window.innerHeight;
-            this.updatePointer(x, y);
-        }, { passive: false });
+        /* Touch: never preventDefault on document — that blocks all page scrolling on iOS/Android.
+           Passive listener only updates the shader pointer when the user moves a finger. */
+        document.addEventListener(
+            'touchmove',
+            (e) => {
+                const touch = e.touches[0];
+                if (!touch) return;
+                const x = touch.clientX / window.innerWidth;
+                const y = 1.0 - touch.clientY / window.innerHeight;
+                this.updatePointer(x, y);
+            },
+            { passive: true }
+        );
 
         // Resize handler
         window.addEventListener('resize', () => {
