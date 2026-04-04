@@ -7,14 +7,14 @@
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.88;
+    opacity: 0.32;
     overflow: hidden;
     background: transparent;
     transition: opacity 0.3s ease;
 }
 
 :root[data-theme="light"] .rain-layer {
-    opacity: 0.72;
+    opacity: 0.26;
 }
 
 .rain-layer canvas {
