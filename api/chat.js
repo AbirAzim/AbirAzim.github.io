@@ -2,11 +2,49 @@
  * POST /api/chat — Gemini proxy. API key stays in Vercel env only.
  * Body: { message: string, history?: { role: 'user'|'model', text: string }[] }
  */
-const MODEL = process.env.GEMINI_MODEL || 'gemini-1.5-flash';
+const DEFAULT_MODELS = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-flash-8b'];
+
+async function readJsonBody(req) {
+    if (req.body != null && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
+        return req.body;
+    }
+    if (typeof req.body === 'string') {
+        try {
+            return JSON.parse(req.body);
+        } catch {
+            return {};
+        }
+    }
+    if (Buffer.isBuffer(req.body)) {
+        try {
+            return JSON.parse(req.body.toString('utf8') || '{}');
+        } catch {
+            return {};
+        }
+    }
+    return new Promise((resolve, reject) => {
+        const chunks = [];
+        req.on('data', (c) => chunks.push(c));
+        req.on('end', () => {
+            try {
+                const raw = Buffer.concat(chunks).toString('utf8');
+                resolve(raw ? JSON.parse(raw) : {});
+            } catch {
+                resolve({});
+            }
+        });
+        req.on('error', reject);
+    });
+}
 
 export default async function handler(req, res) {
+    if (req.method === 'OPTIONS') {
+        res.status(204).setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS').end();
+        return;
+    }
+
     if (req.method !== 'POST') {
-        res.status(405).setHeader('Allow', 'POST').end();
+        res.status(405).setHeader('Allow', 'POST, OPTIONS').end();
         return;
     }
 
@@ -17,17 +55,7 @@ export default async function handler(req, res) {
         return;
     }
 
-    let body = req.body;
-    if (typeof body === 'string') {
-        try {
-            body = JSON.parse(body);
-        } catch {
-            res.status(400).setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({ error: 'Invalid JSON body' }));
-            return;
-        }
-    }
-
+    const body = await readJsonBody(req);
     const message = body?.message;
     const history = Array.isArray(body?.history) ? body.history : [];
 
@@ -48,10 +76,6 @@ export default async function handler(req, res) {
     }
     contents.push({ role: 'user', parts: [{ text: message.trim() }] });
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${encodeURIComponent(
-        apiKey.trim()
-    )}`;
-
     const systemInstruction = {
         parts: [
             {
@@ -60,42 +84,69 @@ export default async function handler(req, res) {
         ],
     };
 
+    const payload = JSON.stringify({
+        systemInstruction,
+        contents,
+        generationConfig: {
+            maxOutputTokens: 768,
+            temperature: 0.65,
+        },
+    });
+
+    const envModel = (process.env.GEMINI_MODEL || '').trim();
+    const tryModels = envModel ? [envModel, ...DEFAULT_MODELS.filter((m) => m !== envModel)] : [...DEFAULT_MODELS];
+
+    let lastError = 'Gemini request failed';
+
     try {
-        const geminiRes = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                systemInstruction,
-                contents,
-                generationConfig: {
-                    maxOutputTokens: 768,
-                    temperature: 0.65,
-                },
-            }),
-        });
+        for (const model of tryModels) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(
+                apiKey.trim()
+            )}`;
 
-        const data = await geminiRes.json();
+            const geminiRes = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: payload,
+            });
 
-        if (!geminiRes.ok) {
-            const msg = data?.error?.message || 'Gemini request failed';
-            console.error('Gemini API error:', msg);
-            res.status(502).setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({ error: msg }));
-            return;
+            const data = await geminiRes.json();
+
+            if (!geminiRes.ok) {
+                lastError = data?.error?.message || `HTTP ${geminiRes.status}`;
+                if (geminiRes.status === 404) {
+                    continue;
+                }
+                console.error('Gemini API error:', lastError);
+                res.status(502).setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: lastError }));
+                return;
+            }
+
+            const candidate = data?.candidates?.[0];
+            const text = candidate?.content?.parts?.[0]?.text;
+            if (text) {
+                res.status(200).setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ reply: text }));
+                return;
+            }
+
+            const block = data?.promptFeedback?.blockReason;
+            if (block) {
+                lastError = `Response blocked (${block})`;
+                res.status(502).setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: lastError }));
+                return;
+            }
+
+            lastError = candidate?.finishReason ? `No text (finish: ${candidate.finishReason})` : 'Empty model response';
         }
 
-        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (!text) {
-            res.status(502).setHeader('Content-Type', 'application/json');
-            res.end(JSON.stringify({ error: 'Empty model response' }));
-            return;
-        }
-
-        res.status(200).setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify({ reply: text }));
+        res.status(502).setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({ error: lastError }));
     } catch (err) {
         console.error('api/chat error:', err);
         res.status(502).setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify({ error: 'Upstream request failed' }));
+        res.end(JSON.stringify({ error: err?.message || 'Upstream request failed' }));
     }
 }

@@ -106,7 +106,11 @@ export class ChatbotManager {
             } catch (error) {
                 console.error('Chat error:', error);
                 this.hideTypingIndicator();
-                this.addMessage('> ERROR: Connection failed. Please try again.', 'bot');
+                const detail = error?.message ? String(error.message) : 'Connection failed';
+                this.addMessage(
+                    `> ERROR\n> ${detail}\n> Tips: Vercel → Settings → Environment Variables → GEMINI_API_KEY, then Redeploy. Local: run npm run dev:vercel with .env set.`,
+                    'bot'
+                );
             }
 
             chatSend.disabled = false;
@@ -142,20 +146,41 @@ export class ChatbotManager {
 
     async callAPI(message, history) {
         if (this.useRealChat) {
-            const res = await fetch('/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    message,
-                    history: history.slice(-14),
-                }),
-            });
-            const data = await res.json().catch(() => ({}));
+            let res;
+            try {
+                res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message,
+                        history: history.slice(-14),
+                    }),
+                });
+            } catch (e) {
+                throw new Error(
+                    e?.message?.includes('fetch')
+                        ? 'Network error — is this site opened as file:// or without /api routes? Use Vercel URL or npm run dev:vercel.'
+                        : e?.message || 'Network error'
+                );
+            }
+
+            const raw = await res.text();
+            let data;
+            try {
+                data = raw ? JSON.parse(raw) : {};
+            } catch {
+                throw new Error(
+                    res.status === 404
+                        ? '/api/chat not found — redeploy on Vercel after adding the api/ folder.'
+                        : `Invalid JSON from server (${res.status}): ${raw.slice(0, 160)}`
+                );
+            }
+
             if (!res.ok) {
                 throw new Error(data.error || `HTTP ${res.status}`);
             }
             if (!data.reply || typeof data.reply !== 'string') {
-                throw new Error('Invalid response');
+                throw new Error(data.error || 'Invalid response from assistant');
             }
             return data.reply;
         }
