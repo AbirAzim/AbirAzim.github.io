@@ -1,10 +1,24 @@
-// AI Chatbot — real replies via Vercel /api/chat (Gemini); mock fallback elsewhere.
+// AI Chatbot — real replies via Vercel /api/chat (Gemini/OpenAI); mock fallback elsewhere.
+function chatErrorTips(detail) {
+    const d = String(detail || '').toLowerCase();
+    if (
+        d.includes('quota') ||
+        d.includes('billing') ||
+        d.includes('gemini tried first') ||
+        d.includes('openai tried first') ||
+        d.includes('both providers hit')
+    ) {
+        return '> Tips: দুটো API-তেই কোটা/বিলিং শেষ হতে পারে। OpenAI: https://platform.openai.com → Billing / Usage। Gemini: https://aistudio.google.com বা https://ai.google.dev — API কী ও লিমিট চেক করুন। Vercel-এ env ঠিক করে Redeploy করুন।';
+    }
+    return '> Tips: Vercel → Settings → Environment Variables → GEMINI_API_KEY ও/অথবা OPENAI_API_KEY, তারপর Redeploy। লোকাল: npm run dev:vercel ও .env।';
+}
+
 export class ChatbotManager {
     constructor() {
         this.isInitialized = false;
         this.chatHistory = [];
         this.isTyping = false;
-        /** True when /api/health reports Gemini is configured (Vercel + env). */
+        /** True when /api/health reports chat API keys are set (Vercel + env). */
         this.useRealChat = false;
     }
 
@@ -34,9 +48,9 @@ export class ChatbotManager {
 
         this.useRealChat = await this.probeServerChat();
         if (this.useRealChat) {
-            console.log('Chatbot: using server Gemini API (/api/chat).');
+            console.log('Chatbot: using server /api/chat (Gemini and/or OpenAI).');
         } else {
-            console.log('Chatbot: mock mode (run `vercel dev` locally or set GEMINI_API_KEY on Vercel for live AI).');
+            console.log('Chatbot: mock mode (vercel dev locally or set GEMINI_API_KEY / OPENAI_API_KEY on Vercel).');
         }
 
         const chatContainer = document.getElementById('chat-container');
@@ -107,10 +121,7 @@ export class ChatbotManager {
                 console.error('Chat error:', error);
                 this.hideTypingIndicator();
                 const detail = error?.message ? String(error.message) : 'Connection failed';
-                this.addMessage(
-                    `> ERROR\n> ${detail}\n> Tips: Vercel → Settings → Environment Variables → GEMINI_API_KEY, then Redeploy. Local: run npm run dev:vercel with .env set.`,
-                    'bot'
-                );
+                this.addMessage(`> ERROR\n> ${detail}\n${chatErrorTips(detail)}`, 'bot');
             }
 
             chatSend.disabled = false;

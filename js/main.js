@@ -11,6 +11,27 @@ import { FluidBackground } from './fluid-background.js';
 import { RainLayer } from './rain-layer.js';
 import { ChatbotManager } from './chatbot.js';
 
+function initPayoneerPanel() {
+    const btn = document.getElementById('payoneer-copy');
+    const span = document.getElementById('payoneer-email');
+    if (!btn || !span) return;
+    const raw = span.textContent.trim().replace(/\s/g, '');
+    btn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(raw);
+            btn.textContent = 'Copied!';
+            setTimeout(() => {
+                btn.textContent = 'Copy email';
+            }, 2000);
+        } catch {
+            btn.textContent = 'Copy manually';
+            setTimeout(() => {
+                btn.textContent = 'Copy email';
+            }, 2500);
+        }
+    });
+}
+
 class PortfolioApp {
     constructor() {
         this.configManager = new ConfigManager();
@@ -38,6 +59,7 @@ class PortfolioApp {
 
             // Initialize chatbot (conditionally based on API key)
             await this.chatbotManager.init();
+            initPayoneerPanel();
 
             // Load configuration
             const config = await this.configManager.loadConfig();

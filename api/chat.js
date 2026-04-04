@@ -181,6 +181,14 @@ export default async function handler(req, res) {
         res.end(JSON.stringify({ error }));
     };
 
+    const quotaHint = (a, b) => {
+        const s = `${a || ''} ${b || ''}`;
+        if (/quota|billing|exceeded|resource_exhausted|429|limit:\s*0/i.test(s)) {
+            return ' Both providers hit quota or billing limits — add credits/billing on https://platform.openai.com and check https://aistudio.google.com (Gemini), then redeploy.';
+        }
+        return '';
+    };
+
     try {
         if (tryGeminiFirst && hasGemini) {
             const g = await tryGemini(geminiKey, message, history);
@@ -194,7 +202,10 @@ export default async function handler(req, res) {
                     sendReply(o.reply);
                     return;
                 }
-                return sendErr(502, `${o.error} (Gemini fallback: ${(g.error || '').slice(0, 280)})`);
+                return sendErr(
+                    502,
+                    `${o.error} (Gemini tried first: ${(g.error || '').slice(0, 240)})${quotaHint(o.error, g.error)}`
+                );
             }
             return sendErr(502, g.error || 'Gemini failed');
         }
@@ -211,7 +222,10 @@ export default async function handler(req, res) {
                     sendReply(g.reply);
                     return;
                 }
-                return sendErr(502, `${g.error} (OpenAI: ${(o.error || '').slice(0, 200)})`);
+                return sendErr(
+                    502,
+                    `${g.error} (OpenAI tried first: ${(o.error || '').slice(0, 240)})${quotaHint(g.error, o.error)}`
+                );
             }
             return sendErr(502, o.error || 'OpenAI failed');
         }

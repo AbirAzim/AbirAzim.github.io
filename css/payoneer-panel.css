@@ -1,0 +1,151 @@
+/* WhatsApp → Buy me a coffee → Payoneer — fixed above chat / “Talk to me” */
+.payoneer-panel {
+    position: fixed;
+    right: 2rem;
+    bottom: calc(2rem + 80px + 4.75rem);
+    z-index: 9998;
+    max-width: min(220px, calc(100vw - 4rem));
+    font-family: var(--font-secondary, 'Inter', system-ui, sans-serif);
+}
+
+.payoneer-panel-inner {
+    background: var(--bg-card, rgba(15, 20, 35, 0.92));
+    border: 1px solid rgba(255, 107, 53, 0.35);
+    border-radius: 12px;
+    padding: 0.65rem 0.75rem 0.75rem;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+}
+
+.payoneer-panel-heading {
+    margin: 0 0 0.55rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: var(--text-primary, #e8eaef);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 0.5rem;
+}
+
+.payoneer-panel-wa-label {
+    margin: 0 0 0.3rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #25d366;
+    text-align: center;
+}
+
+.payoneer-panel-wa-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 100%;
+    margin: 0;
+    padding: 0.42rem 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #fff !important;
+    text-decoration: none;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    border-radius: 8px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.payoneer-panel-wa-link:hover {
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.45);
+    transform: translateY(-1px);
+    color: #fff !important;
+}
+
+.payoneer-panel-wa-link:focus-visible {
+    outline: 2px solid var(--primary-neon, #00ffff);
+    outline-offset: 2px;
+}
+
+.payoneer-panel-wa-link:active {
+    transform: translateY(0);
+}
+
+.payoneer-panel-wa-icon {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+}
+
+.payoneer-panel-section-divider {
+    height: 1px;
+    margin: 0.55rem 0;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.payoneer-panel-label {
+    margin: 0 0 0.35rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #ff6b35;
+    text-align: center;
+}
+
+.payoneer-panel-email {
+    margin: 0 0 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-primary, #e8eaef);
+    word-break: break-all;
+    line-height: 1.35;
+}
+
+.payoneer-panel-copy {
+    display: block;
+    width: 100%;
+    padding: 0.4rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #fff;
+    background: linear-gradient(135deg, #ff6b35 0%, #e85d00 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.payoneer-panel-copy:hover {
+    box-shadow: 0 4px 14px rgba(255, 107, 53, 0.4);
+    transform: translateY(-1px);
+}
+
+.payoneer-panel-copy:focus-visible {
+    outline: 2px solid var(--primary-neon, #00ffff);
+    outline-offset: 2px;
+}
+
+.payoneer-panel-copy:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .payoneer-panel {
+        right: 1rem;
+        bottom: calc(1rem + 70px + 4.5rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .payoneer-panel {
+        right: 0.8rem;
+        bottom: calc(0.8rem + 65px + 4.25rem);
+    }
+
+    .payoneer-panel-inner {
+        padding: 0.55rem 0.65rem 0.65rem;
+    }
+}
