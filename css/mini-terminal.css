@@ -3,11 +3,20 @@
     position: relative;
     z-index: 2;
     /* Avoid isolation/transform layers — iOS WebKit has dropped backgrounds on similar widgets */
-    display: block;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: stretch;
+    align-items: stretch;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
     max-width: 520px;
+    /* Fixed footprint — size never grows with history; only .mini-terminal-screen scrolls */
+    height: 11.5rem;
+    min-height: 11.5rem;
+    max-height: 11.5rem;
     margin: 0 auto var(--space-8);
     border-radius: 12px;
     overflow: hidden;
@@ -48,8 +57,13 @@
     -webkit-flex-wrap: nowrap;
     flex-wrap: nowrap;
     gap: 0.4rem;
-    min-height: 2.25rem;
-    padding: 0.5rem 0.65rem;
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    height: 2.75rem;
+    min-height: 2.75rem;
+    max-height: 2.75rem;
+    padding: 0 0.65rem;
     background-color: #0f172a;
     background-image: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
     border-bottom: 1px solid rgba(56, 189, 248, 0.25);
@@ -97,19 +111,15 @@
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     padding: 0.55rem 0.5rem 0.65rem 0.65rem;
-    min-height: 7.5rem;
-    max-height: 12rem;
+    display: block;
+    -webkit-flex: 1 1 0;
+    flex: 1 1 0;
+    min-height: 0;
+    max-height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    -webkit-justify-content: flex-start;
-    justify-content: flex-start;
-    gap: 0.2rem;
     background-color: #030712;
     background-image: linear-gradient(165deg, #0c1220 0%, #030712 100%);
     scrollbar-width: thin;
@@ -254,10 +264,14 @@
     .mini-terminal {
         max-width: 100%;
         font-size: 0.62rem;
+        height: 10.5rem;
+        min-height: 10.5rem;
+        max-height: 10.5rem;
     }
 
-    .mini-terminal-screen {
-        min-height: 6.8rem;
-        max-height: 10.5rem;
+    .mini-terminal-titlebar {
+        height: 2.5rem;
+        min-height: 2.5rem;
+        max-height: 2.5rem;
     }
 }

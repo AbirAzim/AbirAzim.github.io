@@ -47,6 +47,11 @@
             border: 1px solid rgba(56, 189, 248, 0.45);
             border-radius: 12px;
             overflow: hidden;
+            height: 11.5rem;
+            min-height: 11.5rem;
+            max-height: 11.5rem;
+            display: flex;
+            flex-direction: column;
             -webkit-background-clip: padding-box;
             background-clip: padding-box;
         }
@@ -54,8 +59,12 @@
             display: flex;
             align-items: center;
             gap: 0.4rem;
-            min-height: 2.25rem;
-            padding: 0.5rem 0.65rem;
+            flex: 0 0 auto;
+            box-sizing: border-box;
+            height: 2.75rem;
+            min-height: 2.75rem;
+            max-height: 2.75rem;
+            padding: 0 0.65rem;
             background-color: #0f172a;
             border-bottom: 1px solid rgba(56, 189, 248, 0.25);
         }
@@ -88,6 +97,11 @@
         }
         #mini-terminal .mini-terminal-screen {
             background-color: #030712;
+            flex: 1 1 0;
+            min-height: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         #mini-terminal .mini-terminal-prompt-user {
             color: #4ade80;
@@ -105,6 +119,18 @@
         }
         #mini-terminal .mini-terminal-cursor {
             color: #22d3ee;
+        }
+        @media (max-width: 480px) {
+            #mini-terminal.mini-terminal {
+                height: 10.5rem;
+                min-height: 10.5rem;
+                max-height: 10.5rem;
+            }
+            #mini-terminal .mini-terminal-titlebar {
+                height: 2.5rem;
+                min-height: 2.5rem;
+                max-height: 2.5rem;
+            }
         }
     </style>
     <link rel="preconnect" href="https://avatars.githubusercontent.com">
@@ -179,26 +205,25 @@
                 </a>
             </div>
             <div class="social-links" role="navigation" aria-label="Social links"></div>
-        </header>
 
-        <!-- Outside header: avoids rain-theme header::before mix-blend flattening terminal chrome on iOS Safari -->
-        <div class="mini-terminal" id="mini-terminal" aria-hidden="true">
-            <div class="mini-terminal-titlebar">
-                <span class="mini-terminal-dot" aria-hidden="true"></span>
-                <span class="mini-terminal-dot mini-terminal-dot--amber" aria-hidden="true"></span>
-                <span class="mini-terminal-dot mini-terminal-dot--green" aria-hidden="true"></span>
-                <span class="mini-terminal-title">bash</span>
-            </div>
-            <div class="mini-terminal-screen">
-                <div class="mini-terminal-history" id="mini-terminal-history"></div>
-                <div class="mini-terminal-current" id="mini-terminal-current">
-                    <span class="mini-terminal-line-prefix">
-                        <span class="mini-terminal-prompt-user">abir@portfolio</span><span class="mini-terminal-prompt-muted">:</span><span class="mini-terminal-prompt-path">~</span><span class="mini-terminal-prompt-muted">$ </span>
-                    </span>
-                    <span id="mini-terminal-typed"></span><span class="mini-terminal-cursor" aria-hidden="true">▋</span>
+            <div class="mini-terminal" id="mini-terminal" aria-hidden="true">
+                <div class="mini-terminal-titlebar">
+                    <span class="mini-terminal-dot" aria-hidden="true"></span>
+                    <span class="mini-terminal-dot mini-terminal-dot--amber" aria-hidden="true"></span>
+                    <span class="mini-terminal-dot mini-terminal-dot--green" aria-hidden="true"></span>
+                    <span class="mini-terminal-title">bash</span>
+                </div>
+                <div class="mini-terminal-screen">
+                    <div class="mini-terminal-history" id="mini-terminal-history"></div>
+                    <div class="mini-terminal-current" id="mini-terminal-current">
+                        <span class="mini-terminal-line-prefix">
+                            <span class="mini-terminal-prompt-user">abir@portfolio</span><span class="mini-terminal-prompt-muted">:</span><span class="mini-terminal-prompt-path">~</span><span class="mini-terminal-prompt-muted">$ </span>
+                        </span>
+                        <span id="mini-terminal-typed"></span><span class="mini-terminal-cursor" aria-hidden="true">▋</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </header>
 
         <section class="about" aria-label="About me"></section>
 
