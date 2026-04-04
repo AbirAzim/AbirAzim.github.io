@@ -11,10 +11,22 @@ export class LoadingManager {
                 loadingScreen.classList.add('hidden');
                 container.classList.remove('content-hidden');
                 container.classList.add('content-visible');
+                // Remove fixed overlay from layout after fade — fixes iOS Safari scroll stuck on invisible layer
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    loadingScreen.setAttribute('aria-hidden', 'true');
+                }, 600);
             }, 500);
         } else {
-            // Just hide the loading screen on error (error message is already shown)
             loadingScreen.classList.add('hidden');
+            if (container) {
+                container.classList.remove('content-hidden');
+                container.classList.add('content-visible');
+            }
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                loadingScreen.setAttribute('aria-hidden', 'true');
+            }, 600);
         }
     }
 }

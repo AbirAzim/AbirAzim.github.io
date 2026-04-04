@@ -48,6 +48,7 @@ export class FluidBackground {
         this.canvas = document.createElement('canvas');
         this.canvas.id = 'fluid-canvas';
         this.canvas.className = 'fluid-canvas';
+        this.canvas.style.pointerEvents = 'none';
         document.body.insertBefore(this.canvas, document.body.firstChild);
         this.resizeCanvas();
     }

@@ -19,6 +19,7 @@ export class RainLayer {
         document.documentElement.classList.add('rainy-site');
 
         this.canvas = document.createElement('canvas');
+        this.canvas.style.pointerEvents = 'none';
         this.ctx = this.canvas.getContext('2d');
         container.appendChild(this.canvas);
 

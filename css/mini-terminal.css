@@ -24,6 +24,15 @@
     -webkit-transform: translateZ(0);
 }
 
+/* Mobile WebKit: backdrop + stacked header can make panel invisible — solid fill */
+@media (max-width: 768px) {
+    .mini-terminal {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background: rgb(6, 10, 20);
+    }
+}
+
 .mini-terminal-titlebar {
     display: flex;
     align-items: center;

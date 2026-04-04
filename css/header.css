@@ -4,6 +4,7 @@ header {
     margin-bottom: clamp(var(--space-12), 8vw, var(--space-24));
     animation: fadeIn 1s ease;
     position: relative;
+    isolation: isolate;
     background: var(--gradient-surface);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-2xl);

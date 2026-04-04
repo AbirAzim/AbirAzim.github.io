@@ -7,6 +7,8 @@
 
 /* Custom Properties */
 :root {
+    color-scheme: light dark;
+
     /* Modern Color System */
     --primary-50: #eff6ff;
     --primary-100: #dbeafe;
@@ -120,6 +122,8 @@
 
 /* Dark mode */
 :root[data-theme="dark"] {
+    color-scheme: dark;
+
     --background-color: var(--gray-900);
     --surface-color: var(--gray-800);
     --card-background: var(--gray-800);
@@ -141,6 +145,10 @@
     --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
 }
 
+:root[data-theme='light'] {
+    color-scheme: light;
+}
+
 /* Base Styles */
 body {
     background: var(--background-color);
@@ -155,8 +163,8 @@ body {
     min-height: 100%;
     min-height: -webkit-fill-available;
     overflow-x: hidden;
-    overflow-y: visible;
-    touch-action: pan-y pinch-zoom;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Accessibility - Focus Styles */
@@ -283,13 +291,16 @@ p {
     }
 }
 
-/* Smooth scrolling + mobile Safari scroll (avoid trapped gestures) */
+/* Smooth scrolling — iOS works best with scroll on both html + body, no fixed-height trap */
 html {
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    -webkit-text-size-adjust: 100%;
+    height: auto;
     min-height: 100%;
-    overflow-y: scroll;
+    min-height: -webkit-fill-available;
     overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Selection styles */

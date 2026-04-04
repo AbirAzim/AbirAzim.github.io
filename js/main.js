@@ -65,7 +65,10 @@ class PortfolioApp {
 
             // Load configuration
             const config = await this.configManager.loadConfig();
-            if (!config) return;
+            if (!config) {
+                this.loadingManager.hideLoadingScreen(false);
+                return;
+            }
 
             // Update SEO tags first
             this.seoManager.updateSEOTags(config);

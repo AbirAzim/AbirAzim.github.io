@@ -7,10 +7,11 @@ export class ThemeManager {
 
     init() {
         this.themeSwitch = document.querySelector('.theme-switch');
-        
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        this.root.setAttribute('data-theme', savedTheme);
+
+        // Saved choice wins; otherwise default dark (matches portfolio + Safari expectations)
+        const saved = localStorage.getItem('theme');
+        const initial = saved === 'light' || saved === 'dark' ? saved : 'dark';
+        this.root.setAttribute('data-theme', initial);
 
         // Add event listener for theme switch
         if (this.themeSwitch) {
