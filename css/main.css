@@ -1,5 +1,7 @@
 /* Main Stylesheet - Imports all modular CSS files */
 @import url('./base.css');
+@import url('./page-background.css');
+@import url('./rain-theme.css');
 @import url('./components.css');
 @import url('./loading.css');
 @import url('./fluid-background.css');
@@ -13,6 +15,6 @@
 @import url('./featured-projects.css');
 @import url('./footer.css');
 @import url('./chatbot.css');
-@import url('./matrix.css');
+@import url('./rain-layer.css');
 @import url('./animations.css');
 @import url('./responsive.css');

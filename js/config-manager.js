@@ -45,11 +45,11 @@ export class ConfigManager {
         const loadingScreen = document.getElementById('loading-screen');
         const fileHint =
             isFileProtocol || (typeof window !== 'undefined' && window.location?.protocol === 'file:')
-                ? `<p><strong>আপনি index.html সরাসরি ফাইল হিসেবে খুলেছেন (file://)।</strong> ব্রাউজার সুরক্ষার কারণে এভাবে <code>config.json</code> লোড করা যায় না বা আটকে যেতে পারে।</p>
-                   <p>প্রজেক্ট ফোল্ডারে টার্মিনাল খুলে চালান:</p>
+                ? `<p><strong>You opened <code>index.html</code> as a file (<code>file://</code>).</strong> Browsers block or fail <code>fetch</code> for <code>config.json</code> from local files.</p>
+                   <p>Open a terminal in the project folder and run:</p>
                    <pre style="background: rgba(0,0,0,.06); padding: 1rem; border-radius: 8px; overflow: auto; text-align: left;">npm run start</pre>
-                   <p>তারপর ব্রাউজারে যে ঠিকানা দেখাবে (যেমন <code>http://localhost:5173</code>) সেটি খুলুন।</p>`
-                : `<p>সমস্যা থাকলে <code>config.json</code> ফরম্যাট ও ফাইল পাথ চেক করুন। উপরের মতো <code>npm run start</code> দিয়ে লোকাল সার্ভারেও চেষ্টা করতে পারেন।</p>`;
+                   <p>Then open the URL it prints (e.g. <code>http://localhost:5173</code>) in your browser.</p>`
+                : `<p>Check <code>config.json</code> format and path. You can also run <code>npm run start</code> and open the local server URL as above.</p>`;
 
         const safeMsg = String(message).replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -57,7 +57,7 @@ export class ConfigManager {
             loadingScreen.setAttribute('role', 'alert');
             loadingScreen.innerHTML = `
             <div style="max-width: 32rem; margin: 0 auto; padding: 1.5rem; text-align: left; font-family: system-ui, sans-serif; line-height: 1.5;">
-                <h1 style="font-size: 1.25rem; margin-bottom: 0.75rem;">কনফিগ লোড হয়নি</h1>
+                <h1 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Could not load config</h1>
                 <p style="color: #b91c1c;">${safeMsg}</p>
                 ${fileHint}
             </div>`;

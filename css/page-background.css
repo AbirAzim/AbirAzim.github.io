@@ -1,0 +1,68 @@
+/* Professional full-page backdrop: subtle abstract image + readable overlays.
+   Sits at z-index -2; fluid canvas (-1) and rain layer stay as light accents. */
+
+html {
+    background-color: #0b1220;
+    min-height: 100%;
+}
+
+:root[data-theme="light"] html {
+    background-color: #e8eef5;
+}
+
+body {
+    background-color: transparent;
+}
+
+.site-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-color: #0b1220;
+    background-image:
+        linear-gradient(
+            165deg,
+            rgba(11, 18, 32, 0.96) 0%,
+            rgba(30, 58, 138, 0.42) 42%,
+            rgba(15, 23, 42, 0.94) 100%
+        ),
+        url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=82");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Light theme: softer wash so sections stay crisp */
+:root[data-theme="light"] .site-backdrop {
+    background-color: #e8eef5;
+    background-image:
+        linear-gradient(
+            168deg,
+            rgba(248, 250, 252, 0.92) 0%,
+            rgba(219, 234, 254, 0.78) 45%,
+            rgba(241, 245, 249, 0.93) 100%
+        ),
+        url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=82");
+}
+
+/* Optional: users on slow networks still get a solid base */
+@media (prefers-reduced-data: reduce) {
+    .site-backdrop {
+        background-image: linear-gradient(
+            165deg,
+            #0f172a 0%,
+            #1e3a5f 50%,
+            #0f172a 100%
+        );
+    }
+
+    :root[data-theme="light"] .site-backdrop {
+        background-image: linear-gradient(
+            168deg,
+            #f8fafc 0%,
+            #e2e8f0 50%,
+            #f1f5f9 100%
+        );
+    }
+}

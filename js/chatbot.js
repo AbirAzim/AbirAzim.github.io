@@ -147,7 +147,12 @@ export class ChatbotManager {
         // Mock responses based on keywords
         const lowerMessage = message.toLowerCase();
         
-        if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('নমস্কার')) {
+        if (
+            lowerMessage.includes('hello') ||
+            lowerMessage.includes('hi') ||
+            lowerMessage.includes('hey') ||
+            lowerMessage.includes('namaste')
+        ) {
             return `> GREETING PROTOCOL ACTIVATED\n> Hello! I am Abir's AI assistant\n> How can I help you today?`;
         } else if (lowerMessage.includes('project')) {
             return `> ACCESSING PROJECT DATABASE...\n> Abir's highlighted work:\n• Bigtopa — multi-tenant AWS/AppSync backend\n• Doerfy — GraphQL monorepo (Yoga, TypeGraphQL)\n• Blending101 — Blending Recipe (Node.js GraphQL, MongoDB, Apollo / type-graphql)\n> Which area interests you most?`;

@@ -15,7 +15,7 @@ A cutting-edge portfolio featuring AI-powered chatbot, cyberpunk aesthetics, and
 
 ### 🎨 Design & Aesthetics
 - **Cyberpunk Theme** - Neon colors, glass morphism effects, and futuristic styling
-- **Matrix Rain Effect** - Animated background with theme-adaptive visibility
+- **Rain backdrop** - Subtle slate-blue rain streaks (canvas, no text) with a muted fluid accent
 - **Glass Morphism** - Glossy transparent sections with backdrop blur effects
 - **Responsive Design** - Mobile-first approach with seamless device adaptation
 

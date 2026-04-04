@@ -1,0 +1,221 @@
+/* Site-wide rainy mood when RainLayer adds .rainy-site on <html> */
+
+html.rainy-site[data-theme="dark"] {
+    --border-color: rgba(100, 116, 139, 0.38);
+}
+
+html.rainy-site[data-theme="light"] {
+    --border-color: rgba(148, 163, 184, 0.45);
+}
+
+html.rainy-site section {
+    box-shadow:
+        0 4px 6px rgba(15, 40, 60, 0.06),
+        0 12px 40px rgba(15, 50, 80, 0.12);
+}
+
+html.rainy-site[data-theme="dark"] section {
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.28),
+        0 16px 48px rgba(0, 20, 40, 0.45);
+}
+
+html.rainy-site header,
+html.rainy-site .footer {
+    backdrop-filter: blur(14px) saturate(1.08);
+    -webkit-backdrop-filter: blur(14px) saturate(1.08);
+}
+
+/* Cool mist overlay on fixed backdrop */
+html.rainy-site .site-backdrop::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        185deg,
+        rgba(56, 100, 130, 0.22) 0%,
+        transparent 38%,
+        rgba(20, 45, 70, 0.35) 100%
+    );
+    animation: rainy-mist 22s ease-in-out infinite alternate;
+}
+
+html.rainy-site[data-theme="light"] .site-backdrop::after {
+    background: linear-gradient(
+        185deg,
+        rgba(148, 180, 210, 0.2) 0%,
+        transparent 42%,
+        rgba(100, 130, 160, 0.18) 100%
+    );
+}
+
+@keyframes rainy-mist {
+    0% {
+        opacity: 0.75;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.rainy-site .site-backdrop::after {
+        animation: none;
+        opacity: 0.88;
+    }
+}
+
+/* --- Wet surface: rain “landed” on panels (specular edge + bead highlights) --- */
+
+html.rainy-site .experience-item {
+    position: relative;
+}
+
+/* Panels without an existing full-card ::before use ::before for droplets */
+html.rainy-site[data-theme="dark"] section::before,
+html.rainy-site[data-theme="dark"] header::before,
+html.rainy-site[data-theme="dark"] .footer::before,
+html.rainy-site[data-theme="dark"] .featured-project-card::before,
+html.rainy-site[data-theme="dark"] .experience-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+    opacity: 0.82;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
+        inset 0 -20px 48px rgba(0, 28, 48, 0.38);
+    background-image:
+        linear-gradient(188deg, rgba(210, 232, 252, 0.2) 0%, transparent 34%),
+        radial-gradient(ellipse 135% 58% at 50% -10%, rgba(255, 255, 255, 0.22), transparent 54%),
+        radial-gradient(circle at 6% 12%, rgba(255, 255, 255, 0.28) 0 1px, rgba(255, 255, 255, 0.06) 2.5px, transparent 4.5px),
+        radial-gradient(circle at 17% 36%, rgba(255, 255, 255, 0.14) 0 1px, transparent 3px),
+        radial-gradient(circle at 29% 14%, rgba(200, 225, 248, 0.2) 0 1px, transparent 2.5px),
+        radial-gradient(circle at 44% 48%, rgba(255, 255, 255, 0.12) 0 1px, transparent 2.8px),
+        radial-gradient(circle at 61% 20%, rgba(255, 255, 255, 0.18) 0 1px, rgba(255, 255, 255, 0.05) 2px, transparent 4px),
+        radial-gradient(circle at 77% 40%, rgba(220, 236, 252, 0.14) 0 0.8px, transparent 2.2px),
+        radial-gradient(circle at 91% 16%, rgba(255, 255, 255, 0.16) 0 1px, transparent 3.2px),
+        radial-gradient(circle at 11% 70%, rgba(255, 255, 255, 0.1) 0 1px, transparent 2.6px),
+        radial-gradient(circle at 33% 82%, rgba(255, 255, 255, 0.13) 0 1px, transparent 3px),
+        radial-gradient(circle at 56% 66%, rgba(195, 218, 240, 0.12) 0 1px, transparent 2.2px),
+        radial-gradient(circle at 81% 74%, rgba(255, 255, 255, 0.11) 0 1px, transparent 2.8px),
+        radial-gradient(circle at 95% 52%, rgba(255, 255, 255, 0.12) 0 1px, transparent 3px),
+        radial-gradient(circle at 24% 56%, rgba(255, 255, 255, 0.08) 0 0.8px, transparent 2px),
+        radial-gradient(circle at 69% 90%, rgba(230, 242, 255, 0.11) 0 1px, transparent 2.6px),
+        radial-gradient(circle at 50% 62%, rgba(255, 255, 255, 0.06) 0 0.6px, transparent 1.8px);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+html.rainy-site[data-theme="light"] section::before,
+html.rainy-site[data-theme="light"] header::before,
+html.rainy-site[data-theme="light"] .footer::before,
+html.rainy-site[data-theme="light"] .featured-project-card::before,
+html.rainy-site[data-theme="light"] .experience-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    opacity: 0.42;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.75),
+        inset 0 -16px 36px rgba(70, 100, 130, 0.09);
+    background-image:
+        linear-gradient(188deg, rgba(255, 255, 255, 0.55) 0%, transparent 32%),
+        radial-gradient(ellipse 130% 50% at 50% -6%, rgba(255, 255, 255, 0.65), transparent 52%),
+        radial-gradient(circle at 8% 14%, rgba(255, 255, 255, 0.95) 0 0.5px, rgba(100, 130, 160, 0.18) 2.5px, transparent 4px),
+        radial-gradient(circle at 22% 40%, rgba(90, 120, 150, 0.12) 0 1px, transparent 3px),
+        radial-gradient(circle at 38% 18%, rgba(255, 255, 255, 0.5) 0 1px, transparent 2.5px),
+        radial-gradient(circle at 54% 50%, rgba(120, 150, 175, 0.1) 0 1px, transparent 2.8px),
+        radial-gradient(circle at 72% 24%, rgba(255, 255, 255, 0.45) 0 1px, rgba(90, 120, 145, 0.12) 2px, transparent 4px),
+        radial-gradient(circle at 86% 44%, rgba(255, 255, 255, 0.35) 0 0.8px, transparent 2.2px),
+        radial-gradient(circle at 14% 68%, rgba(255, 255, 255, 0.4) 0 1px, transparent 2.6px),
+        radial-gradient(circle at 48% 78%, rgba(110, 140, 165, 0.1) 0 1px, transparent 3px),
+        radial-gradient(circle at 78% 70%, rgba(255, 255, 255, 0.38) 0 1px, transparent 2.8px),
+        radial-gradient(circle at 62% 88%, rgba(255, 255, 255, 0.32) 0 0.8px, transparent 2px);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* Cards that already use ::before for decoration: wet layer = ::after, lift children */
+html.rainy-site .achievement-card,
+html.rainy-site .project-item,
+html.rainy-site .skill-category,
+html.rainy-site .chat-widget {
+    isolation: isolate;
+}
+
+html.rainy-site[data-theme="dark"] .achievement-card::after,
+html.rainy-site[data-theme="dark"] .project-item::after,
+html.rainy-site[data-theme="dark"] .skill-category::after,
+html.rainy-site[data-theme="dark"] .chat-widget::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: soft-light;
+    opacity: 0.78;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.14),
+        inset 0 -16px 40px rgba(0, 26, 44, 0.32);
+    background-image:
+        linear-gradient(188deg, rgba(205, 228, 250, 0.18) 0%, transparent 32%),
+        radial-gradient(ellipse 125% 52% at 48% -8%, rgba(255, 255, 255, 0.2), transparent 52%),
+        radial-gradient(circle at 10% 18%, rgba(255, 255, 255, 0.24) 0 1px, rgba(255, 255, 255, 0.05) 2px, transparent 4px),
+        radial-gradient(circle at 84% 22%, rgba(255, 255, 255, 0.16) 0 1px, transparent 3px),
+        radial-gradient(circle at 42% 58%, rgba(255, 255, 255, 0.1) 0 1px, transparent 2.6px),
+        radial-gradient(circle at 66% 72%, rgba(210, 230, 250, 0.12) 0 1px, transparent 2.4px),
+        radial-gradient(circle at 28% 80%, rgba(255, 255, 255, 0.09) 0 0.8px, transparent 2px),
+        radial-gradient(circle at 92% 68%, rgba(255, 255, 255, 0.11) 0 1px, transparent 2.8px);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+html.rainy-site[data-theme="light"] .achievement-card::after,
+html.rainy-site[data-theme="light"] .project-item::after,
+html.rainy-site[data-theme="light"] .skill-category::after,
+html.rainy-site[data-theme="light"] .chat-widget::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: multiply;
+    opacity: 0.38;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -12px 28px rgba(80, 110, 135, 0.08);
+    background-image:
+        linear-gradient(188deg, rgba(255, 255, 255, 0.5) 0%, transparent 30%),
+        radial-gradient(ellipse 120% 48% at 50% -5%, rgba(255, 255, 255, 0.55), transparent 50%),
+        radial-gradient(circle at 12% 20%, rgba(255, 255, 255, 0.85) 0 0.5px, rgba(95, 125, 155, 0.14) 2px, transparent 3.8px),
+        radial-gradient(circle at 78% 28%, rgba(255, 255, 255, 0.4) 0 1px, transparent 2.8px),
+        radial-gradient(circle at 46% 62%, rgba(115, 145, 170, 0.1) 0 1px, transparent 2.6px),
+        radial-gradient(circle at 88% 76%, rgba(255, 255, 255, 0.35) 0 0.8px, transparent 2.2px);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+html.rainy-site .achievement-card > *,
+html.rainy-site .project-item > *,
+html.rainy-site .skill-category > *,
+html.rainy-site .chat-widget > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Featured cards: teal skin stays readable — soften wet blend a touch */
+html.rainy-site[data-theme="dark"] .featured-project-card::before {
+    opacity: 0.68;
+    mix-blend-mode: lighten;
+}

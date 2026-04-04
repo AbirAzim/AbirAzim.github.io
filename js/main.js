@@ -8,7 +8,7 @@ import { HeaderManager } from './header-manager.js';
 import { GitHubProjectsManager } from './github-projects-manager.js';
 import { FooterManager } from './footer-manager.js';
 import { FluidBackground } from './fluid-background.js';
-import { MatrixRain } from './matrix-rain.js';
+import { RainLayer } from './rain-layer.js';
 import { ChatbotManager } from './chatbot.js';
 
 class PortfolioApp {
@@ -22,7 +22,7 @@ class PortfolioApp {
         this.githubProjectsManager = new GitHubProjectsManager();
         this.footerManager = new FooterManager();
         this.fluidBackground = new FluidBackground();
-        this.matrixRain = new MatrixRain();
+        this.rainLayer = new RainLayer();
         this.chatbotManager = new ChatbotManager();
     }
 
@@ -34,8 +34,7 @@ class PortfolioApp {
             // Initialize fluid background
             this.fluidBackground.init();
 
-            // Initialize matrix rain effect
-            this.matrixRain.init();
+            this.rainLayer.init();
 
             // Initialize chatbot (conditionally based on API key)
             await this.chatbotManager.init();
