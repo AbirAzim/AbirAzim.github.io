@@ -22,11 +22,9 @@ Create a `.env` file in the project root:
 
 ```
 GEMINI_API_KEY=your_gemini_api_key_here
-```
-**OR**
-```
 OPENAI_API_KEY=your_openai_api_key_here
 ```
+Use **one or both**. With both, **auto** tries Gemini first, then OpenAI if Gemini errors (e.g. quota). Set `CHAT_PROVIDER=openai` to use only OpenAI.
 
 ## 🛡️ Security Features
 
@@ -39,8 +37,8 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 ### For Vercel:
 - [ ] Repository connected to Vercel
-- [ ] **Environment variable** `GEMINI_API_KEY` set in Vercel → Settings → Environment Variables (Production + Preview)
-- [ ] Optional: `GEMINI_MODEL` (default `gemini-1.5-flash`)
+- [ ] **Environment variables** in Vercel → Settings → Environment Variables: `GEMINI_API_KEY` and/or `OPENAI_API_KEY` (Production + Preview)
+- [ ] Optional: `CHAT_PROVIDER` (`auto` | `gemini` | `openai`), `GEMINI_MODEL`, `OPENAI_MODEL` (default `gpt-4o-mini`)
 - [ ] Redeploy after adding secrets; chat uses serverless **`/api/chat`** (key never shipped to the browser)
 - [ ] Local API test: `npx vercel dev` (not `python -m http.server`)
 
@@ -55,9 +53,9 @@ OPENAI_API_KEY=your_openai_api_key_here
 1. `npm run start` → open `http://localhost:5173`
 2. Chatbot uses **mock** replies (Python server has no Gemini proxy).
 
-### Full chat with Gemini (local)
+### Full chat with AI (local)
 1. Copy `.env.example` to `.env` (if you do not have it): `cp .env.example .env`
-2. Edit `.env` and set `GEMINI_API_KEY=` to your key (file is gitignored).
+2. Edit `.env`: set `GEMINI_API_KEY` and/or `OPENAI_API_KEY` (optional `CHAT_PROVIDER`; file is gitignored).
 3. First time: `npx vercel login` and `npx vercel link` in the project folder (links to your Vercel project).
 4. Run **`npm run dev:vercel`** — open the URL it prints (usually `http://localhost:3000`).
 5. The app will call `/api/health` and `/api/chat` on that dev server.

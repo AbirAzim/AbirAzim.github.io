@@ -1,6 +1,5 @@
 /**
- * GET /api/health — tells the client whether server-side chat (Gemini) is configured.
- * Never exposes the API key.
+ * GET /api/health — whether server-side chat is configured (Gemini and/or OpenAI).
  */
 export default function handler(req, res) {
     if (req.method !== 'GET') {
@@ -8,9 +7,10 @@ export default function handler(req, res) {
         return;
     }
 
-    const key = process.env.GEMINI_API_KEY;
-    const chat = typeof key === 'string' && key.trim().length > 8;
+    const g = typeof process.env.GEMINI_API_KEY === 'string' && process.env.GEMINI_API_KEY.trim().length > 8;
+    const o = typeof process.env.OPENAI_API_KEY === 'string' && process.env.OPENAI_API_KEY.trim().length > 8;
+    const chat = g || o;
 
     res.status(200).setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ chat }));
+    res.end(JSON.stringify({ chat, providers: { gemini: g, openai: o } }));
 }
