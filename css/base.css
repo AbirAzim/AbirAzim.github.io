@@ -152,6 +152,11 @@ body {
     transition: var(--transition);
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     font-optical-sizing: auto;
+    min-height: 100%;
+    min-height: -webkit-fill-available;
+    overflow-x: hidden;
+    overflow-y: visible;
+    touch-action: pan-y pinch-zoom;
 }
 
 /* Accessibility - Focus Styles */
@@ -278,10 +283,13 @@ p {
     }
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling + mobile Safari scroll (avoid trapped gestures) */
 html {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    min-height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 /* Selection styles */

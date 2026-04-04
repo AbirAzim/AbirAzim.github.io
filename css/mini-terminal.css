@@ -1,5 +1,7 @@
 /* Mini terminal — header accent, monospace typing animation */
 .mini-terminal {
+    position: relative;
+    z-index: 2;
     width: 100%;
     max-width: 520px;
     margin: 0 auto var(--space-8);
@@ -9,13 +11,17 @@
     font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', ui-monospace, monospace;
     font-size: clamp(0.65rem, 1.8vw, 0.78rem);
     line-height: 1.45;
-    background: rgba(6, 10, 20, 0.92);
+    /* Solid enough for Safari when backdrop-filter fails */
+    background: rgba(6, 10, 20, 0.97);
     border: 1px solid rgba(56, 189, 248, 0.25);
     box-shadow:
         0 0 0 1px rgba(0, 0, 0, 0.4) inset,
         0 8px 32px rgba(0, 0, 0, 0.45),
         0 0 40px rgba(8, 145, 178, 0.08);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 .mini-terminal-titlebar {

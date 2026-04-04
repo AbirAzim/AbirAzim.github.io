@@ -33,9 +33,16 @@
     color: var(--text-color, #1e293b);
 }
 
-.hidden {
+/* Only #loading-screen uses this class — keep scoped so generic .hidden is not affected */
+#loading-screen.hidden {
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
+    z-index: -1;
+    transition:
+        opacity 0.5s ease-out,
+        visibility 0s linear 0.5s,
+        z-index 0s linear 0.5s;
 }
 
 /* Hide empty elements until content loads */
