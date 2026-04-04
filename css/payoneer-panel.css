@@ -2,13 +2,18 @@
 .payoneer-panel {
     position: fixed;
     right: 2rem;
+    left: auto;
     bottom: calc(2rem + 80px + 4.75rem);
     z-index: 9998;
-    max-width: min(220px, calc(100vw - 4rem));
+    /* Explicit width: fixed block-level boxes can span full viewport on mobile and steal scroll touches */
+    width: min(220px, calc(100vw - 2rem));
+    box-sizing: border-box;
     font-family: var(--font-secondary, 'Inter', system-ui, sans-serif);
+    pointer-events: none;
 }
 
 .payoneer-panel-inner {
+    pointer-events: auto;
     background: var(--bg-card, rgba(15, 20, 35, 0.92));
     border: 1px solid rgba(255, 107, 53, 0.35);
     border-radius: 12px;
@@ -143,6 +148,7 @@
     .payoneer-panel {
         right: 0.8rem;
         bottom: calc(0.8rem + 65px + 4.25rem);
+        width: min(220px, calc(100vw - 1.6rem));
     }
 
     .payoneer-panel-inner {

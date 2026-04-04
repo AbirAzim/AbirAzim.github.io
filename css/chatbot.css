@@ -3,8 +3,19 @@
     position: fixed;
     bottom: 2rem;
     right: 2rem;
+    left: auto;
+    /* Prevent full-viewport hit box on mobile (blocks page scroll) */
+    width: fit-content;
+    max-width: calc(100vw - 1.5rem);
     z-index: 9999;
     font-family: var(--font-secondary);
+    pointer-events: none;
+}
+
+.chat-container .ai-cloud,
+.chat-container .chat-toggle,
+.chat-container .chat-widget.active {
+    pointer-events: auto;
 }
 
 .chat-toggle {
@@ -99,6 +110,8 @@
     transform: scale(0.8) translateY(20px);
     opacity: 0;
     visibility: hidden;
+    /* Closed widget still sat on top of the page and ate touches on mobile Safari */
+    pointer-events: none;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     display: flex;
     flex-direction: column;
@@ -108,6 +121,7 @@
     transform: scale(1) translateY(0);
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 .chat-header {

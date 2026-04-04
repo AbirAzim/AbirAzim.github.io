@@ -1,73 +1,92 @@
-/* Mini terminal — header accent, monospace typing animation */
+/* Mini terminal — Safari-safe: no reliance on flex-only sizing for dots; solid chrome */
 .mini-terminal {
     position: relative;
     z-index: 2;
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     width: 100%;
     max-width: 520px;
     margin: 0 auto var(--space-8);
-    border-radius: var(--radius-xl, 12px);
+    border-radius: 12px;
     overflow: hidden;
     text-align: left;
-    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', ui-monospace, monospace;
+    /* Menlo / Courier work when Google Fonts are delayed or blocked (Safari) */
+    font-family:
+        'JetBrains Mono',
+        Menlo,
+        Monaco,
+        Consolas,
+        'Liberation Mono',
+        'Courier New',
+        Courier,
+        monospace;
     font-size: clamp(0.65rem, 1.8vw, 0.78rem);
     line-height: 1.45;
-    /* Solid enough for Safari when backdrop-filter fails */
-    background: rgba(6, 10, 20, 0.97);
-    border: 1px solid rgba(56, 189, 248, 0.25);
+    -webkit-font-smoothing: antialiased;
+    /* Solid panel — backdrop-filter caused empty / “plain text” compositing in Safari */
+    background-color: #060a14;
+    background-image: linear-gradient(180deg, #0a1020 0%, #060a14 100%);
+    border: 1px solid rgba(56, 189, 248, 0.45);
     box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.4) inset,
-        0 8px 32px rgba(0, 0, 0, 0.45),
-        0 0 40px rgba(8, 145, 178, 0.08);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    transform: translateZ(0);
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 8px 28px rgba(0, 0, 0, 0.5);
     -webkit-transform: translateZ(0);
-}
-
-/* Mobile WebKit: backdrop + stacked header can make panel invisible — solid fill */
-@media (max-width: 768px) {
-    .mini-terminal {
-        -webkit-backdrop-filter: none;
-        backdrop-filter: none;
-        background: rgb(6, 10, 20);
-    }
+    transform: translateZ(0);
 }
 
 .mini-terminal-titlebar {
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
     align-items: center;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
     gap: 0.4rem;
-    padding: 0.45rem 0.65rem;
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(8, 12, 24, 0.99) 100%);
-    border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+    min-height: 2.25rem;
+    padding: 0.5rem 0.65rem;
+    background-color: #0f172a;
+    background-image: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
 }
 
+/* Dots: always box-sized even if flex item layout regresses (older Safari) */
 .mini-terminal-dot {
+    display: inline-block;
     width: 10px;
     height: 10px;
+    min-width: 10px;
+    min-height: 10px;
     border-radius: 50%;
-    background: #f87171;
-    flex-shrink: 0;
+    background-color: #f87171;
+    vertical-align: middle;
     box-shadow: 0 0 6px rgba(248, 113, 113, 0.5);
 }
 
 .mini-terminal-dot--amber {
-    background: #fbbf24;
+    background-color: #fbbf24;
     box-shadow: 0 0 6px rgba(251, 191, 36, 0.45);
 }
 
 .mini-terminal-dot--green {
-    background: #4ade80;
+    background-color: #4ade80;
     box-shadow: 0 0 6px rgba(74, 222, 128, 0.45);
 }
 
 .mini-terminal-title {
-    flex: 1;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-width: 0;
     text-align: center;
-    font-size: 0.68em;
-    letter-spacing: 0.12em;
+    font-family: inherit;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(148, 163, 184, 0.85);
+    color: #94a3b8;
     font-weight: 600;
 }
 
@@ -77,12 +96,17 @@
     max-height: 12rem;
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: column;
     flex-direction: column;
+    -webkit-justify-content: flex-start;
     justify-content: flex-start;
     gap: 0.2rem;
-    background: linear-gradient(165deg, rgba(2, 6, 14, 0.98) 0%, rgba(4, 10, 22, 1) 100%);
+    background-color: #030712;
+    background-image: linear-gradient(165deg, #0c1220 0%, #030712 100%);
     scrollbar-width: thin;
     scrollbar-color: rgba(56, 189, 248, 0.45) rgba(15, 23, 42, 0.6);
 }
@@ -107,15 +131,19 @@
 }
 
 .mini-terminal-history {
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: column;
     flex-direction: column;
     gap: 0.2rem;
+    -webkit-flex-shrink: 0;
     flex-shrink: 0;
 }
 
 .mini-terminal-line {
     word-break: break-word;
     white-space: normal;
+    font-family: inherit;
 }
 
 .mini-terminal-line--input {
@@ -126,7 +154,7 @@
     color: #86efac;
     opacity: 0.92;
     padding-left: 0.35rem;
-    border-left: 2px solid rgba(34, 197, 94, 0.35);
+    border-left: 2px solid rgba(34, 197, 94, 0.45);
     margin-bottom: 0.15rem;
     font-size: 0.92em;
 }
@@ -154,32 +182,46 @@
 }
 
 .mini-terminal-current {
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-align-items: baseline;
     align-items: baseline;
-    gap: 0;
     margin-top: 0.15rem;
     min-height: 1.35em;
+    -webkit-flex-shrink: 0;
     flex-shrink: 0;
+    font-family: inherit;
 }
 
 .mini-terminal-line-prefix {
+    -webkit-flex-shrink: 0;
     flex-shrink: 0;
     white-space: nowrap;
+    font-family: inherit;
 }
 
 #mini-terminal-typed {
     color: #f8fafc;
     white-space: pre-wrap;
     word-break: break-word;
+    font-family: inherit;
 }
 
 .mini-terminal-cursor {
     display: inline-block;
     color: #22d3ee;
     font-weight: 300;
+    -webkit-animation: mini-terminal-blink 1s step-end infinite;
     animation: mini-terminal-blink 1s step-end infinite;
     margin-left: 1px;
+}
+
+@-webkit-keyframes mini-terminal-blink {
+    50% {
+        opacity: 0;
+    }
 }
 
 @keyframes mini-terminal-blink {
@@ -190,8 +232,16 @@
 
 @media (prefers-reduced-motion: reduce) {
     .mini-terminal-cursor {
+        -webkit-animation: none;
         animation: none;
         opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .mini-terminal {
+        background-color: #060a14;
+        background-image: none;
     }
 }
 
