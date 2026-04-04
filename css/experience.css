@@ -49,7 +49,8 @@
 
 .experience-item.expanded .experience-content {
     padding: 0 1.5rem 1.5rem;
-    max-height: 500px;
+    /* Tall enough for multiple long bullets + inline logos (500px clipped Bigtopa on mobile) */
+    max-height: min(4000px, 500vh);
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

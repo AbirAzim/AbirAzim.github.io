@@ -58,7 +58,7 @@
 
     .experience-item.expanded .experience-content {
         padding: 0 1rem 1.5rem;
-        max-height: 500px;
+        max-height: min(4000px, 500vh);
     }
     
     .company-logo {
