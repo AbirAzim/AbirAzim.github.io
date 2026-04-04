@@ -9,7 +9,7 @@
   - **Vercel**: Connect GitHub repository to Vercel and deploy
 - **URLs**: 
   - GitHub Pages: `https://username.github.io/repository-name`
-  - Vercel: `https://your-project.vercel.app`
+  - Vercel: `https://abir-azim-github-io.vercel.app`
 
 ### Local Development (Full Features)
 - **Security**: API keys handled securely via local environment variables
@@ -57,5 +57,5 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 ## 🌐 Live URLs
 
-- **Vercel**: https://your-project.vercel.app (Full features)
+- **Vercel**: https://abir-azim-github-io.vercel.app (Full features)
 - **GitHub Pages**: https://username.github.io/repo (Static only)

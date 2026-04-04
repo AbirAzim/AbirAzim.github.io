@@ -3,7 +3,7 @@
 <div align="left">
   
 [![Portfolio](https://img.shields.io/badge/🌐_Visit_Portfolio-Live-brightgreen?style=for-the-badge)](https://AbirAzim.github.io)
-[![Vercel](https://img.shields.io/badge/Vercel-Full_Features-000000?style=for-the-badge&logo=vercel)](https://abirazim.vercel.app)
+[![Vercel](https://img.shields.io/badge/Vercel-Full_Features-000000?style=for-the-badge&logo=vercel)](https://abir-azim-github-io.vercel.app)
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github)](https://github.com/AbirAzim)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/abir-azim-badhon)
 
@@ -45,7 +45,7 @@ A cutting-edge portfolio featuring AI-powered chatbot, cyberpunk aesthetics, and
 - **Setup**: Automatic deployment from main branch
 
 ### Vercel (Recommended)
-- **URL**: [abirazim.vercel.app](https://abirazim.vercel.app)
+- **URL**: [abir-azim-github-io.vercel.app](https://abir-azim-github-io.vercel.app)
 - **Features**: Complete experience with AI chatbot
 - **Setup**: Connect repository + add environment variables
 
