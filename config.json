@@ -22,7 +22,9 @@
   },
   "header": {
     "greeting": "Abir Azim Badhon",
-    "tagline": "Backend Software Engineer"
+    "tagline": "Backend Software Engineer",
+    "resume_pdf": "assets/resume.pdf",
+    "resume_download_name": "Abir-Azim-Badhon-Resume.pdf"
   },
   "social_links": [
     {

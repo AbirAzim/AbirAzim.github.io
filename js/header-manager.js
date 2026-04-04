@@ -14,8 +14,28 @@ export class HeaderManager {
         document.querySelector('h1').textContent = config.header.greeting;
         document.querySelector('.tagline').textContent = config.header.tagline;
 
+        this.updateResumeButton(config);
+
         // Update social links
         this.updateSocialLinks(config);
+    }
+
+    updateResumeButton(config) {
+        const wrap = document.getElementById('header-resume-wrap');
+        const btn = document.getElementById('resume-download-btn');
+        if (!wrap || !btn) return;
+
+        const path = config.header?.resume_pdf?.trim();
+        if (!path) {
+            wrap.hidden = true;
+            return;
+        }
+
+        btn.href = path;
+        const filename = config.header?.resume_download_name?.trim() || 'resume.pdf';
+        btn.setAttribute('download', filename);
+        btn.setAttribute('aria-label', `Download resume as ${filename}`);
+        wrap.hidden = false;
     }
 
     // Extract GitHub username from social links

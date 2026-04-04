@@ -67,13 +67,127 @@ h1 {
 .tagline {
     font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
     color: var(--text-muted);
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-8);
     font-weight: 500;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.4;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Resume download CTA */
+.header-resume-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-8);
+}
+
+.header-resume-wrap[hidden] {
+    display: none !important;
+}
+
+.resume-download-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 999px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    overflow: hidden;
+    isolation: isolate;
+    background: linear-gradient(
+        120deg,
+        #0e7490 0%,
+        #0891b2 25%,
+        #2563eb 50%,
+        #0891b2 75%,
+        #0e7490 100%
+    );
+    background-size: 220% 100%;
+    box-shadow:
+        0 4px 20px rgba(8, 145, 178, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.12) inset,
+        0 0 32px rgba(34, 211, 238, 0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid rgba(165, 243, 252, 0.35);
+}
+
+.resume-download-btn:hover {
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 28px rgba(8, 145, 178, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+        0 0 40px rgba(34, 211, 238, 0.25);
+}
+
+.resume-download-btn:focus-visible {
+    outline: 2px solid var(--primary-color, #2563eb);
+    outline-offset: 3px;
+}
+
+.resume-download-btn:active {
+    transform: translateY(-1px);
+}
+
+.resume-download-btn-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        105deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 60%,
+        transparent 100%
+    );
+    transform: translateX(-100%);
+    animation: resume-shine 3.5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.resume-download-icon,
+.resume-download-label {
+    position: relative;
+    z-index: 1;
+}
+
+.resume-download-icon {
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.35));
+}
+
+@keyframes resume-shine {
+    0%,
+    20% {
+        transform: translateX(-100%);
+    }
+    40% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .resume-download-btn-shine {
+        animation: none;
+    }
+
+    .resume-download-btn {
+        background-size: 100% 100%;
+    }
 }
 
 /* Enhanced Social Links */
