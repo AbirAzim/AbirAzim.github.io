@@ -262,25 +262,14 @@ export class FluidBackground {
 
     setupEventListeners() {
         // Mouse events
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth;
-            const y = 1.0 - e.clientY / window.innerHeight;
-            this.updatePointer(x, y);
-        });
-
-        /* Touch: never preventDefault on document — that blocks all page scrolling on iOS/Android.
-           Passive listener only updates the shader pointer when the user moves a finger. */
-        document.addEventListener(
-            'touchmove',
-            (e) => {
-                const touch = e.touches[0];
-                if (!touch) return;
-                const x = touch.clientX / window.innerWidth;
-                const y = 1.0 - touch.clientY / window.innerHeight;
+        /* Pointer fine devices only — document-level listeners on touch can interfere with scroll on some mobile browsers */
+        if (window.matchMedia('(pointer: fine)').matches) {
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = 1.0 - e.clientY / window.innerHeight;
                 this.updatePointer(x, y);
-            },
-            { passive: true }
-        );
+            });
+        }
 
         // Resize handler
         window.addEventListener('resize', () => {
@@ -464,7 +453,9 @@ export class FluidBackground {
                 rgba(139, 92, 246, 0.1) 100%)
         `;
         canvas.style.animation = 'gradientShift 10s ease-in-out infinite';
-        
+        canvas.style.pointerEvents = 'none';
+        canvas.style.touchAction = 'none';
+
         // Add keyframes for gradient animation
         const style = document.createElement('style');
         style.textContent = `

@@ -2,11 +2,7 @@
 .mini-terminal {
     position: relative;
     z-index: 2;
-    /* Own compositing layer — avoids rain/header blend modes washing out chrome on Safari */
-    isolation: isolate;
-    mix-blend-mode: normal;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    /* Avoid isolation/transform layers — iOS WebKit has dropped backgrounds on similar widgets */
     display: block;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -15,6 +11,8 @@
     margin: 0 auto var(--space-8);
     border-radius: 12px;
     overflow: hidden;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
     text-align: left;
     /* Menlo / Courier work when Google Fonts are delayed or blocked (Safari) */
     font-family:
@@ -36,11 +34,11 @@
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.06),
         0 8px 28px rgba(0, 0, 0, 0.5);
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
 }
 
 .mini-terminal-titlebar {
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: row;
@@ -96,6 +94,8 @@
 }
 
 .mini-terminal-screen {
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
     padding: 0.55rem 0.5rem 0.65rem 0.65rem;
     min-height: 7.5rem;
     max-height: 12rem;

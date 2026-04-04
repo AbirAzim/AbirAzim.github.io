@@ -163,8 +163,8 @@ body {
     min-height: 100%;
     min-height: -webkit-fill-available;
     overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-y: visible;
+    touch-action: pan-y pinch-zoom;
 }
 
 /* Accessibility - Focus Styles */
@@ -291,7 +291,7 @@ p {
     }
 }
 
-/* Smooth scrolling — iOS works best with scroll on both html + body, no fixed-height trap */
+/* Single scroll root: <html> grows with content; body does not create a second scroller */
 html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
@@ -299,16 +299,8 @@ html {
     min-height: 100%;
     min-height: -webkit-fill-available;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-}
-
-/* Mobile WebKit: two nested vertical scroll containers (html + body) often swallow gestures */
-@media (max-width: 768px) {
-    body {
-        overflow-y: visible;
-        touch-action: pan-y pinch-zoom;
-    }
 }
 
 /* Selection styles */

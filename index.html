@@ -38,6 +38,75 @@
     <link rel="apple-touch-icon" href="https://github.com/AbirAzim.png">
     <link rel="preload" href="css/main.css" as="style">
     <link rel="stylesheet" href="css/main.css">
+    <!-- Direct load: iOS Safari often mishandles deep @import chains; terminal chrome was unpainted -->
+    <link rel="stylesheet" href="css/mini-terminal.css">
+    <style>
+        /* In-document fallback so titlebar/screen backgrounds always paint on WebKit mobile */
+        #mini-terminal.mini-terminal {
+            background-color: #060a14;
+            border: 1px solid rgba(56, 189, 248, 0.45);
+            border-radius: 12px;
+            overflow: hidden;
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+        }
+        #mini-terminal .mini-terminal-titlebar {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            min-height: 2.25rem;
+            padding: 0.5rem 0.65rem;
+            background-color: #0f172a;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+        }
+        #mini-terminal .mini-terminal-title {
+            flex: 1 1 auto;
+            min-width: 0;
+            margin: 0;
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #94a3b8;
+        }
+        #mini-terminal .mini-terminal-dot {
+            display: block;
+            width: 10px;
+            height: 10px;
+            min-width: 10px;
+            min-height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background-color: #f87171;
+        }
+        #mini-terminal .mini-terminal-dot--amber {
+            background-color: #fbbf24;
+        }
+        #mini-terminal .mini-terminal-dot--green {
+            background-color: #4ade80;
+        }
+        #mini-terminal .mini-terminal-screen {
+            background-color: #030712;
+        }
+        #mini-terminal .mini-terminal-prompt-user {
+            color: #4ade80;
+            font-weight: 600;
+        }
+        #mini-terminal .mini-terminal-prompt-path {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+        #mini-terminal .mini-terminal-prompt-muted {
+            color: #94a3b8;
+        }
+        #mini-terminal #mini-terminal-typed {
+            color: #f8fafc;
+        }
+        #mini-terminal .mini-terminal-cursor {
+            color: #22d3ee;
+        }
+    </style>
     <link rel="preconnect" href="https://avatars.githubusercontent.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
