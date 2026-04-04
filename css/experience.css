@@ -44,14 +44,15 @@
     padding: 0;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: max-height 0.35s ease-out, padding 0.35s ease-out;
 }
 
 .experience-item.expanded .experience-content {
     padding: 0 1.5rem 1.5rem;
-    /* Tall enough for multiple long bullets + inline logos (500px clipped Bigtopa on mobile) */
-    max-height: min(4000px, 500vh);
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* No numeric max-height — iOS Safari often clips long lists (Bigtopa) after ~500px during/after transition */
+    max-height: none;
+    overflow: visible;
+    transition: padding 0.35s ease-out;
 }
 
 .experience-content ul {
