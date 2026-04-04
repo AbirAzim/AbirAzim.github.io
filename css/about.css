@@ -1,0 +1,29 @@
+/* About Section */
+.about {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+}
+
+.about p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.about a {
+    color: var(--text-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-color);
+    transition: color var(--transition), border-color var(--transition);
+}
+
+.about a:hover {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.about a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+}

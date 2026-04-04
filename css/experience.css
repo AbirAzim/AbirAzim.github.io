@@ -1,0 +1,217 @@
+/* Experience Section */
+.experience-item {
+    margin-bottom: 1.5rem;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.experience-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Experience Header (always visible) */
+.experience-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+/* Experience Header Content */
+.experience-header-content {
+    flex: 1;
+}
+
+.experience-header-content h3 {
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+}
+
+.experience-header-content .date {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Experience Content (collapsible) */
+.experience-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-item.expanded .experience-content {
+    padding: 0 1.5rem 1.5rem;
+    max-height: 500px;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-content ul {
+    list-style: none;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.experience-content li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.experience-content li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+}
+
+/*
+ * Live project links: browsers force default blue on :link/:visited unless beaten.
+ * Use section.experience + :any-link/:visited + !important on brand colors.
+ */
+section.experience .experience-content a:any-link,
+section.experience .experience-content a:link,
+section.experience .experience-content a:visited {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    transition: color var(--transition), border-color var(--transition);
+    -webkit-text-fill-color: var(--text-color);
+}
+
+section.experience .experience-content a:hover {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    -webkit-text-fill-color: var(--primary-color);
+}
+
+section.experience .experience-content a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Doerfy — logo lavender / purple */
+section.experience .experience-content a[href*="doerfy.com"]:any-link,
+section.experience .experience-content a[href*="doerfy.com"]:link,
+section.experience .experience-content a[href*="doerfy.com"]:visited {
+    color: #b794f6 !important;
+    border-bottom-color: rgba(183, 148, 246, 0.55) !important;
+    -webkit-text-fill-color: #b794f6 !important;
+}
+
+section.experience .experience-content a[href*="doerfy.com"]:hover {
+    color: #d6bcfa !important;
+    border-bottom-color: #d6bcfa !important;
+    -webkit-text-fill-color: #d6bcfa !important;
+}
+
+section.experience .experience-content a[href*="doerfy.com"]:focus-visible {
+    outline-color: #b794f6;
+}
+
+/* Blending101 — orange + green accent from logo */
+section.experience .experience-content a[href*="blending101.com"]:any-link,
+section.experience .experience-content a[href*="blending101.com"]:link,
+section.experience .experience-content a[href*="blending101.com"]:visited {
+    color: #f97316 !important;
+    border-bottom-color: rgba(34, 197, 94, 0.6) !important;
+    -webkit-text-fill-color: #f97316 !important;
+}
+
+section.experience .experience-content a[href*="blending101.com"]:hover {
+    color: #fb923c !important;
+    border-bottom-color: #4ade80 !important;
+    -webkit-text-fill-color: #fb923c !important;
+}
+
+section.experience .experience-content a[href*="blending101.com"]:focus-visible {
+    outline-color: #22c55e;
+}
+
+/* BigTopa — tent orange */
+section.experience .experience-content a[href*="bigtopa.com"]:any-link,
+section.experience .experience-content a[href*="bigtopa.com"]:link,
+section.experience .experience-content a[href*="bigtopa.com"]:visited {
+    color: #ff8c42 !important;
+    border-bottom-color: rgba(255, 140, 66, 0.6) !important;
+    -webkit-text-fill-color: #ff8c42 !important;
+}
+
+section.experience .experience-content a[href*="bigtopa.com"]:hover {
+    color: #ffb366 !important;
+    border-bottom-color: #ffb366 !important;
+    -webkit-text-fill-color: #ffb366 !important;
+}
+
+section.experience .experience-content a[href*="bigtopa.com"]:focus-visible {
+    outline-color: #ff8c42;
+}
+
+.experience-content .experience-inline-brand {
+    display: block;
+    margin: 0 0 0.5rem 0;
+}
+
+.experience-content .experience-inline-brand img {
+    max-height: 52px;
+    width: auto;
+    max-width: min(240px, 100%);
+    object-fit: contain;
+    display: block;
+}
+
+/* Accordion Toggle Icon */
+.accordion-toggle {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+}
+
+.experience-item.expanded .accordion-toggle {
+    transform: rotate(180deg);
+}
+
+/* Company Logo */
+.company-logo {
+    width: 140px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto 0;
+    padding: 1rem;
+}
+
+.company-logo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: none;
+    max-height: 50px;
+}
+
+.company-logo .light-mode-logo {
+    display: block;
+}
+
+[data-theme="dark"] .company-logo .light-mode-logo {
+    display: none;
+}
+
+[data-theme="dark"] .company-logo .dark-mode-logo {
+    display: block;
+}

@@ -1,0 +1,292 @@
+{
+  "features": {
+    "about": true,
+    "achievements": true,
+    "projects": true,
+    "experience": true,
+    "skills": true,
+    "github_projects": true
+  },
+  "site": {
+    "title": "Abir Azim Badhon — Backend Software Engineer",
+    "description": "Backend Software Engineer focused on scalable, reliable systems, GraphQL and AWS-backed services, and long-term maintainability.",
+    "seo": {
+      "title": "Abir Azim Badhon — Backend Software Engineer",
+      "description": "Backend Software Engineer focused on building scalable, reliable systems with clear architecture. Experience with GraphQL, AWS, MongoDB, and multi-tenant backends.",
+      "keywords": "Backend Engineer, TypeScript, GraphQL, AWS, MongoDB, Lambda, AppSync, CDK, Express, Dhaka, Bangladesh",
+      "author": "Abir Azim Badhon",
+      "og_image": "https://avatars.githubusercontent.com/AbirAzim",
+      "twitter_card": "summary_large_image",
+      "base_url": "https://AbirAzim.github.io"
+    }
+  },
+  "header": {
+    "greeting": "Abir Azim Badhon",
+    "tagline": "Backend Software Engineer"
+  },
+  "social_links": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/AbirAzim",
+      "icon": "github",
+      "required": true
+    },
+    {
+      "name": "Email",
+      "url": "mailto:badhonkhanbk007@gmail.com",
+      "icon": "email",
+      "required": true
+    }
+  ],
+  "github_username": "AbirAzim",
+  "about": {
+    "paragraphs": [
+      "Backend Software Engineer focused on building scalable, reliable systems with clear architecture and long-term maintainability in mind. I enjoy turning complex requirements into simple, well-structured solutions and writing code that is easy to reason about under growth and change.",
+      "<strong>Contact</strong><br><a href=\"mailto:badhonkhanbk007@gmail.com\">badhonkhanbk007@gmail.com</a><br>Dhaka, Bangladesh",
+      "<strong>Education</strong><br>Daffodil International University — B.Sc. in Software Engineering"
+    ]
+  },
+  "achievements": {
+    "title": "Highlights",
+    "items": [
+      {
+        "type": "backend",
+        "title": "Production backends",
+        "stat": "GraphQL · AWS",
+        "description": "Built and maintained large GraphQL monorepo backends and multi-tenant AWS stacks (AppSync, Lambda, CDK, MongoDB) for real products in production.",
+        "icon": "⚙️"
+      },
+      {
+        "type": "github",
+        "title": "GitHub",
+        "stat": "@AbirAzim",
+        "description": "Repositories, experiments, and backend-focused work shared publicly on GitHub.",
+        "icon": "🐙",
+        "link": {
+          "url": "https://github.com/AbirAzim",
+          "title": "View profile"
+        }
+      },
+      {
+        "type": "leetcode",
+        "title": "LeetCode",
+        "stat": "AbirAzimKhan",
+        "description": "Algorithm and data-structure practice; problem-solving profile.",
+        "icon": "🧩",
+        "link": {
+          "url": "https://leetcode.com/u/AbirAzimKhan/",
+          "title": "View profile"
+        }
+      },
+      {
+        "type": "youtube",
+        "title": "TypeScript on YouTube",
+        "stat": "Course",
+        "description": "Designed and delivered a TypeScript video course on YouTube (Stack Learner): “TypeScript All You Need to Know,” simplifying core concepts for new programmers.",
+        "icon": "📹",
+        "link": {
+          "url": "https://www.youtube.com/@stacklearner",
+          "title": "Stack Learner on YouTube"
+        }
+      }
+    ]
+  },
+  "projects": {
+    "title": "Featured work",
+    "items": [
+      {
+        "name": "Bigtopa — multi-tenant platform backend",
+        "date": "",
+        "picture": "https://development-bigtopa-bucket.s3.amazonaws.com/blending101/logo?v=",
+        "image_fit": "contain",
+        "description": [
+          "Multi-tenant backend for chat, spaces/rooms, DMs, meetings, blogs, and project tooling: tenant-scoped data, Cognito auth, and AppSync pipeline resolvers.",
+          "Event-driven notifications via EventBridge → Lambda → external notification service and Pusher, including in-app, web-push, and meeting-specific flows.",
+          "Stack: TypeScript, AWS CDK (IaC), MongoDB/Mongoose, Lambda behind AppSync."
+        ],
+        "link": {
+          "url": "https://app.bigtopa.com",
+          "title": "Open Bigtopa"
+        }
+      },
+      {
+        "name": "Doerfy — GraphQL monorepo backend",
+        "date": "",
+        "picture": "https://dev.doerfy.com/doerfy-logo.svg",
+        "image_fit": "contain",
+        "description": [
+          "Designed and maintained a monorepo GraphQL backend using GraphQL Yoga, TypeGraphQL, and Express, exposing a single /graphql endpoint.",
+          "Schema-first resolvers across 50+ feature domains: tasks, goals, stories, collaboration, content, subscriptions, notifications, admin, and more."
+        ],
+        "link": {
+          "url": "https://dev.doerfy.com",
+          "title": "Doerfy"
+        }
+      },
+      {
+        "name": "Blending101 — Blending Recipe",
+        "date": "",
+        "picture": "https://app.blending101.com/_next/image/?url=%2Fimages%2Flogo.png&w=1920&q=100",
+        "image_fit": "contain",
+        "description": [
+          "Blending Recipe is a Node.js GraphQL API for a nutrition and recipe platform: recipes, ingredients, nutrients, member content, planning, and related CMS-style features, backed by MongoDB and exposed over Apollo / type-graphql."
+        ],
+        "link": {
+          "url": "https://app.blending101.com",
+          "title": "Blending101"
+        }
+      }
+    ]
+  },
+  "experience": {
+    "title": "Professional experience",
+    "jobs": [
+      {
+        "company": "Data Savvy Inc.",
+        "role": "Backend Developer (USA-based startup)",
+        "date": "2021 – Present",
+        "responsibilities": [
+          "<span class=\"experience-inline-brand\"><img src=\"https://dev.doerfy.com/doerfy-logo.svg\" alt=\"Doerfy logo\" loading=\"lazy\"></span><strong>Doerfy</strong> (<a href=\"https://dev.doerfy.com\" target=\"_blank\" rel=\"noopener noreferrer\">dev.doerfy.com</a>): Designed and maintained a monorepo GraphQL backend using GraphQL Yoga, TypeGraphQL, and Express — single /graphql endpoint with schema-first resolvers across 50+ domains (tasks, goals, stories, collaboration, content, subscriptions, notifications, admin, and more).",
+          "<span class=\"experience-inline-brand\"><img src=\"https://app.blending101.com/_next/image/?url=%2Fimages%2Flogo.png&w=1920&q=100\" alt=\"Blending101 logo\" loading=\"lazy\"></span><strong>Blending101 / Blending Recipe</strong> (<a href=\"https://app.blending101.com\" target=\"_blank\" rel=\"noopener noreferrer\">app.blending101.com</a>): Blending Recipe is a Node.js GraphQL API for a nutrition and recipe platform: recipes, ingredients, nutrients, member content, planning, and related CMS-style features, backed by MongoDB and exposed over Apollo / type-graphql.",
+          "<span class=\"experience-inline-brand\"><img src=\"https://development-bigtopa-bucket.s3.amazonaws.com/blending101/logo?v=\" alt=\"BigTopa logo\" loading=\"lazy\"></span><strong>Bigtopa</strong> (<a href=\"https://app.bigtopa.com\" target=\"_blank\" rel=\"noopener noreferrer\">app.bigtopa.com</a>): Built and maintained a multi-tenant backend (tenant-scoped data, Cognito auth, AppSync pipeline resolvers) for chat, spaces/rooms, DMs, meetings, blogs, and project tooling. Event-driven notifications (EventBridge → Lambda → external notification service + Pusher) for in-app, web-push, and meeting flows. TypeScript, AWS CDK (IaC), MongoDB/Mongoose, Lambda behind AppSync."
+        ]
+      },
+      {
+        "company": "Stack Learner",
+        "role": "Programming Trainer",
+        "date": "2019 – 2020",
+        "responsibilities": [
+          "Delivered programming training through the SL3 framework for learners without a traditional CS background.",
+          "Designed and delivered a TypeScript video course on YouTube (Stack Learner): “TypeScript All You Need to Know.”"
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills & technologies",
+    "categories": [
+      {
+        "name": "Languages",
+        "items": [
+          {
+            "name": "TypeScript",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/TypeScript.svg"
+          },
+          {
+            "name": "JavaScript",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/JavaScript.svg"
+          },
+          {
+            "name": "Node.js",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/NodeJS-Light.svg"
+          }
+        ]
+      },
+      {
+        "name": "APIs & backend",
+        "items": [
+          {
+            "name": "GraphQL",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/GraphQL-Light.svg"
+          },
+          {
+            "name": "GraphQL Yoga",
+            "logo": "https://raw.githubusercontent.com/graphql-hive/graphql-yoga/main/website/public/assets/logo.svg"
+          },
+          {
+            "name": "TypeGraphQL",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/TypeScript.svg"
+          },
+          {
+            "name": "Express.js",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/ExpressJS-Light.svg"
+          },
+          {
+            "name": "REST API",
+            "logo": "https://cdn.simpleicons.org/openapiinitiative"
+          },
+          {
+            "name": "Schema-first design",
+            "logo": "https://cdn.simpleicons.org/json"
+          }
+        ]
+      },
+      {
+        "name": "Data & realtime",
+        "items": [
+          {
+            "name": "MongoDB",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/MongoDB.svg"
+          },
+          {
+            "name": "Mongoose",
+            "logo": "https://cdn.simpleicons.org/mongoose"
+          },
+          {
+            "name": "Pusher",
+            "logo": "https://cdn.simpleicons.org/pusher"
+          },
+          {
+            "name": "Event-driven design",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Kafka.svg"
+          }
+        ]
+      },
+      {
+        "name": "AWS",
+        "items": [
+          {
+            "name": "AWS Lambda",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/AWS-Light.svg"
+          },
+          {
+            "name": "AWS CDK",
+            "logo": "https://raw.githubusercontent.com/aws/aws-cdk/main/logo/default-256-dark.png"
+          },
+          {
+            "name": "Amazon AppSync",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/GraphQL-Light.svg"
+          },
+          {
+            "name": "Amazon Cognito",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/AWS-Light.svg"
+          },
+          {
+            "name": "Amazon EventBridge",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/AWS-Light.svg"
+          }
+        ]
+      },
+      {
+        "name": "Practices",
+        "items": [
+          {
+            "name": "Multi-tenancy",
+            "logo": "https://cdn.simpleicons.org/auth0"
+          },
+          {
+            "name": "Monorepo backends",
+            "logo": "https://cdn.simpleicons.org/nx"
+          },
+          {
+            "name": "IaC",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Terraform-Light.svg"
+          },
+          {
+            "name": "Notifications (in-app & web push)",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Firebase-Light.svg"
+          }
+        ]
+      }
+    ]
+  },
+  "github_projects": {
+    "title": "Projects on GitHub"
+  },
+  "footer": {
+    "show_social_links": true,
+    "show_built_with": true,
+    "built_with_text": "Built with care using vanilla JavaScript • Open source template",
+    "tagline": "Open to backend-focused roles and interesting platform work."
+  }
+}
