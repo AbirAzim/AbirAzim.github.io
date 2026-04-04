@@ -1,21 +1,42 @@
-// AI Chatbot Manager
+// AI Chatbot — real replies via Vercel /api/chat (Gemini); mock fallback elsewhere.
 export class ChatbotManager {
     constructor() {
         this.isInitialized = false;
         this.chatHistory = [];
         this.isTyping = false;
-        this.apiKey = null;
+        /** True when /api/health reports Gemini is configured (Vercel + env). */
+        this.useRealChat = false;
     }
 
-    // Initialize chatbot only if API key is available
+    isGitHubPagesHost() {
+        return /\.github\.io$/i.test(window.location.hostname || '');
+    }
+
+    async probeServerChat() {
+        if (this.isGitHubPagesHost()) return false;
+        if (window.location.protocol === 'file:') return false;
+        try {
+            const r = await fetch('/api/health', { method: 'GET' });
+            if (!r.ok) return false;
+            const j = await r.json();
+            return j.chat === true;
+        } catch {
+            return false;
+        }
+    }
+
     async init() {
-        // Check for API key in environment or config
-        this.apiKey = this.getApiKey();
-        
-        if (!this.apiKey) {
-            console.log('No API key found - Chatbot disabled');
+        if (this.isGitHubPagesHost()) {
+            console.log('Chatbot hidden on GitHub Pages (no serverless API; keys stay off the client).');
             this.hideChatbot();
             return;
+        }
+
+        this.useRealChat = await this.probeServerChat();
+        if (this.useRealChat) {
+            console.log('Chatbot: using server Gemini API (/api/chat).');
+        } else {
+            console.log('Chatbot: mock mode (run `vercel dev` locally or set GEMINI_API_KEY on Vercel for live AI).');
         }
 
         const chatContainer = document.getElementById('chat-container');
@@ -31,15 +52,12 @@ export class ChatbotManager {
             return;
         }
 
-        // Show chatbot
         chatContainer.style.display = 'block';
 
-        // Cloud click functionality
         const toggleChat = () => {
             chatToggle.classList.toggle('active');
             chatWidget.classList.toggle('active');
-            
-            // Hide cloud when chat opens
+
             if (chatWidget.classList.contains('active')) {
                 chatInput.focus();
                 if (aiCloud) {
@@ -47,21 +65,17 @@ export class ChatbotManager {
                     aiCloud.style.visibility = 'hidden';
                     aiCloud.style.transform = 'translateY(10px) scale(0.8)';
                 }
-            } else {
-                // Show cloud again when chat closes (with delay)
-                if (aiCloud) {
-                    setTimeout(() => {
-                        aiCloud.style.opacity = '1';
-                        aiCloud.style.visibility = 'visible';
-                        aiCloud.style.transform = 'translateY(0) scale(1)';
-                    }, 500);
-                }
+            } else if (aiCloud) {
+                setTimeout(() => {
+                    aiCloud.style.opacity = '1';
+                    aiCloud.style.visibility = 'visible';
+                    aiCloud.style.transform = 'translateY(0) scale(1)';
+                }, 500);
             }
         };
 
         chatToggle.addEventListener('click', toggleChat);
-        
-        // Make cloud clickable to open chat
+
         if (aiCloud) {
             aiCloud.addEventListener('click', () => {
                 if (!chatWidget.classList.contains('active')) {
@@ -70,35 +84,31 @@ export class ChatbotManager {
             });
         }
 
-        // Chat functionality
         const sendMessage = async (message) => {
             if (this.isTyping) return;
-            
-            // Add user message
+
             this.addMessage(message, 'user');
             chatInput.value = '';
             chatSend.disabled = true;
-            
-            // Show typing indicator
+
             this.showTypingIndicator();
-            
+
             try {
                 const response = await this.callAPI(message, this.chatHistory);
-                
+
                 this.hideTypingIndicator();
                 this.addMessage(response, 'bot');
-                
-                // Update chat history
+
                 this.chatHistory.push(
                     { role: 'user', text: message },
                     { role: 'model', text: response }
                 );
-                
             } catch (error) {
+                console.error('Chat error:', error);
                 this.hideTypingIndicator();
                 this.addMessage('> ERROR: Connection failed. Please try again.', 'bot');
             }
-            
+
             chatSend.disabled = false;
         };
 
@@ -123,15 +133,6 @@ export class ChatbotManager {
         console.log('Chatbot initialized successfully');
     }
 
-    // Get API key from environment variables or config
-    getApiKey() {
-        // For security, chatbot is disabled on static deployments
-        // This prevents API key exposure in client-side code
-        console.log('🔒 Security: Chatbot disabled on static deployment for API key protection.');
-        console.log('💡 For full chatbot functionality, use server-side deployment or local development.');
-        return null;
-    }
-    // Hide chatbot if no API key
     hideChatbot() {
         const chatContainer = document.getElementById('chat-container');
         if (chatContainer) {
@@ -139,14 +140,30 @@ export class ChatbotManager {
         }
     }
 
-    // Call AI API (mock for now, replace with actual API)
     async callAPI(message, history) {
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
-        
-        // Mock responses based on keywords
+        if (this.useRealChat) {
+            const res = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message,
+                    history: history.slice(-14),
+                }),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) {
+                throw new Error(data.error || `HTTP ${res.status}`);
+            }
+            if (!data.reply || typeof data.reply !== 'string') {
+                throw new Error('Invalid response');
+            }
+            return data.reply;
+        }
+
+        await new Promise((resolve) => setTimeout(resolve, 800 + Math.random() * 1200));
+
         const lowerMessage = message.toLowerCase();
-        
+
         if (
             lowerMessage.includes('hello') ||
             lowerMessage.includes('hi') ||
@@ -154,28 +171,35 @@ export class ChatbotManager {
             lowerMessage.includes('namaste')
         ) {
             return `> GREETING PROTOCOL ACTIVATED\n> Hello! I am Abir's AI assistant\n> How can I help you today?`;
-        } else if (lowerMessage.includes('project')) {
-            return `> ACCESSING PROJECT DATABASE...\n> Abir's highlighted work:\n• Bigtopa — multi-tenant AWS/AppSync backend\n• Doerfy — GraphQL monorepo (Yoga, TypeGraphQL)\n• Blending101 — Blending Recipe (Node.js GraphQL, MongoDB, Apollo / type-graphql)\n> Which area interests you most?`;
-        } else if (lowerMessage.includes('skill') || lowerMessage.includes('technology')) {
-            return `> SCANNING TECH STACK...\n> Primary technologies:\n• TypeScript, Node.js, GraphQL (Yoga, TypeGraphQL), Express\n• AWS: Lambda, CDK, AppSync, Cognito, EventBridge\n• Data: MongoDB, Mongoose\n• Realtime & notifications: Pusher, event-driven flows`;
-        } else if (lowerMessage.includes('experience')) {
-            return `> RETRIEVING WORK HISTORY...\n> Data Savvy Inc. (2021–Present): Doerfy (GraphQL monorepo), Blending101 / Blending Recipe (nutrition & recipe GraphQL API), Bigtopa (multi-tenant AWS/AppSync)\n> Stack Learner (2019–2020): Programming trainer, TypeScript YouTube course`;
-        } else if (lowerMessage.includes('contact') || lowerMessage.includes('connect')) {
-            return `> CONTACT:\n• Email: badhonkhanbk007@gmail.com\n• GitHub: github.com/AbirAzim\n• Location: Dhaka, Bangladesh`;
-        } else {
-            return `> PROCESSING QUERY...\n> I can summarize Abir's:\n• Backend & GraphQL experience\n• AWS and multi-tenant work\n• Training & content (Stack Learner)\n• Contact details\n> What would you like to know?`;
         }
+        if (lowerMessage.includes('project')) {
+            return `> ACCESSING PROJECT DATABASE...\n> Abir's highlighted work:\n• Bigtopa — multi-tenant AWS/AppSync backend\n• Doerfy — GraphQL monorepo (Yoga, TypeGraphQL)\n• Blending101 — Blending Recipe (Node.js GraphQL, MongoDB, Apollo / type-graphql)\n> Which area interests you most?`;
+        }
+        if (lowerMessage.includes('skill') || lowerMessage.includes('technology')) {
+            return `> SCANNING TECH STACK...\n> Primary technologies:\n• TypeScript, Node.js, GraphQL (Yoga, TypeGraphQL), Express\n• AWS: Lambda, CDK, AppSync, Cognito, EventBridge\n• Data: MongoDB, Mongoose\n• Realtime & notifications: Pusher, event-driven flows`;
+        }
+        if (lowerMessage.includes('experience')) {
+            return `> RETRIEVING WORK HISTORY...\n> Data Savvy Inc. (2021–Present): Doerfy (GraphQL monorepo), Blending101 / Blending Recipe (nutrition & recipe GraphQL API), Bigtopa (multi-tenant AWS/AppSync)\n> Stack Learner (2019–2020): Programming trainer, TypeScript YouTube course`;
+        }
+        if (lowerMessage.includes('contact') || lowerMessage.includes('connect')) {
+            return `> CONTACT:\n• Email: badhonkhanbk007@gmail.com\n• GitHub: github.com/AbirAzim\n• Location: Dhaka, Bangladesh`;
+        }
+        return `> PROCESSING QUERY...\n> I can summarize Abir's:\n• Backend & GraphQL experience\n• AWS and multi-tenant work\n• Training & content (Stack Learner)\n• Contact details\n> What would you like to know?`;
     }
 
     addMessage(text, sender) {
         const chatMessages = document.getElementById('chat-messages');
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${sender}`;
-        
+
         const messageContent = document.createElement('div');
         messageContent.className = 'message-content';
-        messageContent.innerHTML = text.replace(/\\n/g, '<br>');
-        
+        messageContent.innerHTML = String(text)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/\n/g, '<br>');
+
         messageDiv.appendChild(messageContent);
         chatMessages.appendChild(messageDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;

@@ -39,9 +39,10 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 ### For Vercel:
 - [ ] Repository connected to Vercel
-- [ ] Environment variables added in Vercel Dashboard
-- [ ] Build command set (automatic via package.json)
-- [ ] Deploy and test chatbot functionality
+- [ ] **Environment variable** `GEMINI_API_KEY` set in Vercel → Settings → Environment Variables (Production + Preview)
+- [ ] Optional: `GEMINI_MODEL` (default `gemini-1.5-flash`)
+- [ ] Redeploy after adding secrets; chat uses serverless **`/api/chat`** (key never shipped to the browser)
+- [ ] Local API test: `npx vercel dev` (not `python -m http.server`)
 
 ### For GitHub Pages:
 - [ ] Repository pushed to GitHub
@@ -50,10 +51,16 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 ## 🔧 Local Development
 
-1. Copy `.env.example` to `.env`
-2. Add your API key to `.env`
-3. Open `index.html` in browser
-4. Chatbot should work with your local API key
+### Static site only (no `/api` routes)
+1. `npm run start` → open `http://localhost:5173`
+2. Chatbot uses **mock** replies (Python server has no Gemini proxy).
+
+### Full chat with Gemini (local)
+1. Copy `.env.example` to `.env` (if you do not have it): `cp .env.example .env`
+2. Edit `.env` and set `GEMINI_API_KEY=` to your key (file is gitignored).
+3. First time: `npx vercel login` and `npx vercel link` in the project folder (links to your Vercel project).
+4. Run **`npm run dev:vercel`** — open the URL it prints (usually `http://localhost:3000`).
+5. The app will call `/api/health` and `/api/chat` on that dev server.
 
 ## 🌐 Live URLs
 

@@ -1,12 +1,14 @@
 {
   "name": "portfolio",
   "version": "1.0.0",
+  "type": "module",
   "description": "Dynamic Portfolio with Cyberpunk Design",
   "main": "index.html",
   "scripts": {
     "start": "python3 -m http.server 5173",
     "start:serve": "npx --yes serve -l 5173 .",
-    "dev": "npm run start"
+    "dev": "npm run start",
+    "dev:vercel": "npx --yes vercel@latest dev"
   },
   "keywords": ["portfolio", "cyberpunk", "static-site"],
   "author": "Abir Azim Badhon",
