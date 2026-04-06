@@ -40,7 +40,7 @@ export class FooterManager {
             ...config.social_links,
             {
                 name: 'Instagram',
-                url: 'https://www.instagram.com/programmatic.ly',
+                url: 'https://www.instagram.com/iambk.007/',
                 icon: 'instagram'
             },
             {
