@@ -146,15 +146,19 @@
         left: auto;
         width: min(320px, 100%);
         max-width: 100%;
-        margin: var(--space-8) auto var(--space-12);
-        z-index: auto;
+        margin: var(--space-8) auto 0;
+        /* Extra space before footer so you can scroll the card above fixed chat + “Talk to me” */
+        margin-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+        /* Above .chat-container (9999) so Payoneer/WhatsApp isn’t painted under the FAB when they overlap */
+        z-index: 10000;
     }
 }
 
 @media (max-width: 480px) {
     .payoneer-panel {
         width: 100%;
-        margin: var(--space-6) auto var(--space-10);
+        margin: var(--space-6) auto 0;
+        margin-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px));
     }
 
     .payoneer-panel-inner {

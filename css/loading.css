@@ -55,6 +55,22 @@
     opacity: 1;
 }
 
+/* Payoneer panel is a sibling after #main-content — hide until main fades in */
+#main-content.content-hidden ~ .payoneer-panel {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.5s ease-out,
+        visibility 0s linear 0.5s;
+}
+
+#main-content.content-visible ~ .payoneer-panel {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-out;
+}
+
 /* Loading State */
 .loading {
     text-align: center;

@@ -88,7 +88,9 @@
 /* Responsive Design for Footer */
 @media (max-width: 768px) {
     .footer {
-        padding: var(--space-8) var(--space-6) var(--space-6);
+        /* Extra bottom padding so footer isn’t covered by fixed chat (Talk to me + FAB) */
+        padding: var(--space-8) var(--space-6)
+            calc(var(--space-6) + 5.5rem + env(safe-area-inset-bottom, 0px));
         margin-top: var(--space-12);
     }
     
@@ -121,7 +123,8 @@
 
 @media (max-width: 480px) {
     .footer {
-        padding: var(--space-6) var(--space-4) var(--space-4);
+        padding: var(--space-6) var(--space-4)
+            calc(var(--space-4) + 5rem + env(safe-area-inset-bottom, 0px));
     }
     
     .footer-content {
