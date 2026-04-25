@@ -144,21 +144,6 @@
 }
 
 /* Special styling for different achievement types */
-.achievement-card.topmate {
-    border-left: 4px solid #00D4AA;
-}
-
-.achievement-card.topmate .achievement-icon {
-    background: linear-gradient(135deg, #00D4AA 0%, #00B894 100%);
-}
-
-.achievement-card.topmate .achievement-stat {
-    background: linear-gradient(135deg, #00D4AA 0%, #00B894 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
 .achievement-card.github {
     border-left: 4px solid #333;
 }

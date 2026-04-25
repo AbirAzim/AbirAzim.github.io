@@ -42,48 +42,25 @@ export class FooterManager {
                 name: 'Instagram',
                 url: 'https://www.instagram.com/iambk.007/',
                 icon: 'instagram'
-            },
-            {
-                name: 'Hashnode',
-                url: 'https://hashnode.com/@AbirAzim',
-                icon: 'hashnode'
-            },
-            {
-                name: 'Topmate',
-                url: 'https://topmate.io/abirazimbadhon',
-                icon: 'topmate'
-            },
-            {
-                name: 'Credly',
-                url: 'https://www.credly.com/users/abir-azim-badhon',
-                icon: 'credly'
-            },
-            {
-                name: 'LinkedIn Follow',
-                url: 'https://linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=abir-azim-badhon',
-                icon: 'linkedin'
             }
         ];
+
+        // Guard against stale/cached configs: remove duplicates and block unwanted icons
+        const allowedIcons = new Set(['linkedin', 'github', 'email', 'leetcode', 'instagram']);
+        const uniqueByIcon = new Map();
+        extendedSocialLinks.forEach((item) => {
+            if (!item?.icon || !allowedIcons.has(item.icon) || uniqueByIcon.has(item.icon)) return;
+            uniqueByIcon.set(item.icon, item);
+        });
+        const footerLinks = Array.from(uniqueByIcon.values());
         
-        if (extendedSocialLinks && Array.isArray(extendedSocialLinks)) {
-            extendedSocialLinks.forEach(social => {
+        if (footerLinks.length) {
+            footerLinks.forEach(social => {
                 const socialLink = this.createSocialLink(social);
                 if (socialLink) {
                     fragment.appendChild(socialLink);
                 }
             });
-        }
-
-        // Add Source Code link
-        if (config.github_username) {
-            const sourceCodeLink = this.createSocialLink({
-                name: 'Source Code',
-                url: `https://github.com/${config.github_username}/${config.github_username}.github.io`,
-                icon: 'code'
-            });
-            if (sourceCodeLink) {
-                fragment.appendChild(sourceCodeLink);
-            }
         }
 
         footerSocial.appendChild(fragment);

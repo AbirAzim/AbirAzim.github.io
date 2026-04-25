@@ -1,0 +1,61 @@
+.resume-editor-page {
+    min-height: 100vh;
+    margin: 0;
+}
+
+.resume-editor-page-wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.resume-editor-page-wrap h1 {
+    margin: 0 0 1rem;
+    color: #f8fafc;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.resume-editor-page-wrap p {
+    color: #e2e8f0;
+}
+
+.resume-editor-page-auth input,
+.resume-editor-page-auth button,
+.resume-editor-page-actions button {
+    border: 1px solid var(--border-color);
+    background: var(--surface-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    padding: 0.55rem 0.75rem;
+    margin-right: 0.5rem;
+}
+
+.resume-editor-page-auth button,
+.resume-editor-page-actions button {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+#editor-error {
+    color: #ef4444;
+}
+
+#editor-textarea {
+    width: 100%;
+    min-height: 78vh;
+    resize: vertical;
+    border: 1px solid var(--border-color);
+    background: var(--surface-color);
+    color: var(--text-color);
+    border-radius: 10px;
+    padding: 0.85rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.resume-editor-page-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.7rem;
+}

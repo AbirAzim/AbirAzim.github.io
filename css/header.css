@@ -79,7 +79,8 @@ h1 {
 
 /* Resume download CTA */
 .header-resume-wrap {
-    display: flex;
+    /* Resume CTA intentionally hidden */
+    display: none !important;
     justify-content: center;
     margin-bottom: var(--space-8);
 }

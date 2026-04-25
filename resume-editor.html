@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Editor</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/resume-editor-page.css">
+</head>
+<body class="resume-editor-page">
+    <main class="resume-editor-page-wrap">
+        <h1>Resume Editor</h1>
+        <div class="resume-editor-page-auth" id="editor-auth">
+            <p>Enter password to edit and export markdown.</p>
+            <input type="password" id="editor-password" placeholder="Password">
+            <button type="button" id="editor-unlock">Unlock</button>
+            <p id="editor-error" hidden>Wrong password</p>
+        </div>
+        <section class="resume-editor-page-body" id="editor-body" hidden>
+            <textarea id="editor-textarea" spellcheck="false"></textarea>
+            <div class="resume-editor-page-actions">
+                <button type="button" id="editor-download">Download .md</button>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="js/resume-editor-page.js?v=20260425-1"></script>
+</body>
+</html>

@@ -341,7 +341,7 @@ export class SectionManager {
     // Create individual experience item
     createExperienceItem(job) {
         const experienceItem = document.createElement('div');
-        experienceItem.className = 'experience-item';
+        experienceItem.className = 'experience-item expanded';
         
         const responsibilitiesHtml = Array.isArray(job.responsibilities)
             ? job.responsibilities.map(resp => `<li>${resp}</li>`).join('')
@@ -364,11 +364,6 @@ export class SectionManager {
                     ${job.date ? `<p class="date">${job.date}</p>` : ''}
                 </div>
                 ${logoHtml}
-                <div class="accordion-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6,9 12,15 18,9"></polyline>
-                    </svg>
-                </div>
             </div>
             <div class="experience-content">
                 <ul>
@@ -376,12 +371,6 @@ export class SectionManager {
                 </ul>
             </div>
         `;
-        
-        // Add click event listener for accordion functionality
-        const header = experienceItem.querySelector('.experience-header');
-        header.addEventListener('click', () => {
-            this.toggleExperienceAccordion(experienceItem);
-        });
         
         return experienceItem;
     }
@@ -411,10 +400,12 @@ export class SectionManager {
         // Clear existing skills
         skillsGrid.innerHTML = '';
         
+        const categories = Array.isArray(config.skills?.categories) ? config.skills.categories : [];
+
         // Create skill categories
-        if (config.skills?.categories?.length) {
-            config.skills.categories.forEach(category => {
-                const categoryDiv = this.createSkillCategory(category, config.skills.categories.indexOf(category));
+        if (categories.length) {
+            categories.forEach((category, idx) => {
+                const categoryDiv = this.createSkillCategory(category, idx);
                 fragment.appendChild(categoryDiv);
             });
         } else {
@@ -436,6 +427,7 @@ export class SectionManager {
         
         // Append all skill categories at once
         skillsGrid.appendChild(fragment);
+
     }
 
     // Create individual skill category
@@ -454,6 +446,7 @@ export class SectionManager {
         }
         
         categoryDiv.className = `skill-category ${categoryType}`;
+        categoryDiv.dataset.categoryName = category.name;
         
         // Handle certifications differently
         if (categoryType === 'certifications') {
@@ -486,7 +479,7 @@ export class SectionManager {
             const techItems = Array.isArray(category.items) ? category.items : [category.items];
             const techStackHtml = techItems.map(item => {
                 const techName = typeof item === 'object' ? item.name : item;
-                const techLevel = typeof item === 'object' ? (item.level || 'Advanced') : 'Advanced';
+                const techLevel = typeof item === 'object' ? (item.level || '') : '';
                 const logoUrl = typeof item === 'object' && item.logo ? String(item.logo).trim() : '';
                 const techIcon = logoUrl
                     ? `<img src="${this.escapeHtmlAttr(logoUrl)}" alt="" class="tech-icon-img" width="32" height="32" loading="lazy" decoding="async">`
@@ -496,18 +489,20 @@ export class SectionManager {
                     <div class="tech-item">
                         <div class="tech-icon">${techIcon}</div>
                         <div class="tech-name">${techName}</div>
-                        <div class="tech-level">${techLevel}</div>
+                        ${techLevel ? `<div class="tech-level">${techLevel}</div>` : ''}
                     </div>
                 `;
             }).join('');
             
             categoryDiv.innerHTML = `
-                <h3>${category.name}</h3>
+                <h3>${category.name} <span class="skill-count-badge">${techItems.length}</span></h3>
                 <div class="tech-stack-grid">
                     ${techStackHtml}
                 </div>
             `;
         }
+
+        categoryDiv.dataset.searchable = `${category.name} ${categoryDiv.textContent || ''}`.trim();
         
         return categoryDiv;
     }

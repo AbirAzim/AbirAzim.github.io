@@ -14,7 +14,12 @@ export class ConfigManager {
                     ? AbortSignal.timeout(timeoutMs)
                     : undefined;
 
-            const response = await fetch('./config.json', signal ? { signal } : {});
+            const cacheBust = `v=${Date.now()}`;
+            const url = `./config.json?${cacheBust}`;
+            const response = await fetch(
+                url,
+                signal ? { signal, cache: 'no-store' } : { cache: 'no-store' }
+            );
 
             if (!response.ok) {
                 throw new Error(`Failed to load config: ${response.status} ${response.statusText}`);

@@ -50,16 +50,20 @@
     }
 
     .experience-content {
-        padding: 0;
+        padding: 0 1rem 1.5rem !important;
         text-align: left;
-        max-height: 0;
-        overflow: hidden;
+        max-height: none !important;
+        overflow: visible !important;
     }
 
     .experience-item.expanded .experience-content {
-        padding: 0 1rem 1.5rem;
-        max-height: none;
-        overflow: visible;
+        padding: 0 1rem 1.5rem !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    .accordion-toggle {
+        display: none !important;
     }
     
     .company-logo {

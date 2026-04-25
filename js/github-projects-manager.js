@@ -8,9 +8,14 @@ export class GitHubProjectsManager {
     async fetchGitHubProjects(config) {
         this.projectsContainer = document.getElementById('projects');
         const username = config.github_username;
-        
+        const manualProjects = this.getManualProjects();
+
+        if (!this.projectsContainer) return;
+
+        // Always render manual projects in this section, even without GitHub username
         if (!username) {
-            console.warn('No GitHub username provided, skipping GitHub projects');
+            this.projectsContainer.innerHTML = '';
+            this.renderProjects(manualProjects, null);
             return;
         }
         
@@ -36,17 +41,11 @@ export class GitHubProjectsManager {
                 repo.topics && repo.topics.includes('community')
             );
             
-            if (featuredRepos.length > 0) {
-                this.renderProjects(featuredRepos, username);
-            } else {
-                this.projectsContainer.innerHTML = `
-                    <div class="loading">
-                        No featured repositories found. Add the "featured" topic to your repositories to display them here.
-                    </div>
-                `;
-            }
+            const reposToRender = this.mergeUniqueProjects(manualProjects, featuredRepos);
+            this.renderProjects(reposToRender, username);
         } catch (error) {
-            this.projectsContainer.innerHTML = '<div class="loading">Failed to load projects. Please try again later.</div>';
+            // Keep section useful even when GitHub API fails (rate-limit/network)
+            this.renderProjects(manualProjects, username);
             console.error('Error loading GitHub projects:', error);
         }
     }
@@ -61,7 +60,9 @@ export class GitHubProjectsManager {
         });
         
         this.projectsContainer.appendChild(fragment);
-        this.addSeeAllRepositoriesLink(username);
+        if (username) {
+            this.addSeeAllRepositoriesLink(username);
+        }
     }
 
     // Create GitHub project card
@@ -104,5 +105,39 @@ export class GitHubProjectsManager {
             seeAllLink.appendChild(link);
             projectsSection.appendChild(seeAllLink);
         }
+    }
+
+    // Manual fallback projects shown when no community-tagged repos are found
+    getManualProjects() {
+        return [
+            {
+                name: 'CTrend',
+                description: 'CTrend is a social app where people post image comparisons (two or more options side by side), others vote on what they prefer, and everyone sees results update in real time—a mix of a photo feed and polls, with accounts, friends, and profiles so the community can compare and share opinions.',
+                html_url: 'https://github.com/AbirAzim/CTrend',
+                homepage: 'https://c-trend.vercel.app'
+            },
+            {
+                name: 'typespeed',
+                description: 'It helps users test and improve typing speed by typing randomly generated text under time pressure.',
+                html_url: 'https://github.com/AbirAzim/typespeed',
+                homepage: 'https://typespeedtesting.netlify.app'
+            }
+        ];
+    }
+
+    // Merge arrays and drop duplicate repositories by GitHub URL
+    mergeUniqueProjects(primaryRepos, secondaryRepos) {
+        const seen = new Set();
+        const merged = [];
+
+        [...primaryRepos, ...secondaryRepos].forEach((repo) => {
+            const key = repo.html_url || repo.name;
+            if (!seen.has(key)) {
+                seen.add(key);
+                merged.push(repo);
+            }
+        });
+
+        return merged;
     }
 }

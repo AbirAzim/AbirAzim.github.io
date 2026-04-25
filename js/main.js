@@ -1,16 +1,17 @@
 // Main Application Module
-import { ConfigManager } from './config-manager.js';
+import { ConfigManager } from './config-manager.js?v=20260425-2';
 import { SEOManager } from './seo-manager.js';
 import { ThemeManager } from './theme-manager.js';
 import { LoadingManager } from './loading-manager.js';
-import { SectionManager } from './section-manager.js';
-import { HeaderManager } from './header-manager.js';
-import { GitHubProjectsManager } from './github-projects-manager.js';
-import { FooterManager } from './footer-manager.js';
+import { SectionManager } from './section-manager.js?v=20260425-3';
+import { HeaderManager } from './header-manager.js?v=20260425-2';
+import { GitHubProjectsManager } from './github-projects-manager.js?v=20260425-2';
+import { FooterManager } from './footer-manager.js?v=20260425-4';
 import { FluidBackground } from './fluid-background.js';
 import { RainLayer } from './rain-layer.js';
 import { ChatbotManager } from './chatbot.js';
 import { initMiniTerminal } from './mini-terminal.js';
+import { initResumeEditor } from './resume-editor.js?v=20260425-7';
 
 function initPayoneerPanel() {
     const btn = document.getElementById('payoneer-copy');
@@ -82,9 +83,12 @@ class PortfolioApp {
             // Update footer section
             this.footerManager.updateFooterSection(config);
 
-            // Conditionally fetch GitHub projects based on feature flag
+            // Password-protected resume editor + markdown download
+            initResumeEditor(config);
+
+            // Render Projects on GitHub section (manual projects always shown)
             const features = { github_projects: true, ...config.features };
-            if (features.github_projects && config.github_username) {
+            if (features.github_projects) {
                 await this.githubProjectsManager.fetchGitHubProjects(config);
             }
             

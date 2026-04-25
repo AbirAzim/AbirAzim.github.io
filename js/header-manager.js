@@ -56,13 +56,21 @@ export class HeaderManager {
         // Clear existing links
         socialLinks.innerHTML = '';
 
+        const requiredLinks = [
+            { name: 'LinkedIn', url: 'https://www.linkedin.com/in/badhon-khan-007/', icon: 'linkedin' },
+            { name: 'GitHub', url: 'https://github.com/AbirAzim', icon: 'github' },
+            { name: 'Email', url: 'mailto:badhonkhanbk007@gmail.com', icon: 'email' },
+            { name: 'LeetCode', url: 'https://leetcode.com/u/AbirAzimKhan/', icon: 'leetcode' }
+        ];
+
+        const configuredLinks = Array.isArray(config.social_links) ? config.social_links : [];
+        const mergedLinks = this.mergeSocialLinks(requiredLinks, configuredLinks);
+
         // Process social links from config
-        if (config.social_links && config.social_links.length > 0) {
-            config.social_links.forEach(linkConfig => {
+        if (mergedLinks.length > 0) {
+            mergedLinks.forEach(linkConfig => {
                 const link = this.createSocialLink(linkConfig);
-                if (link) {
-                    fragment.appendChild(link);
-                }
+                if (link) fragment.appendChild(link);
             });
         }
 
@@ -73,22 +81,45 @@ export class HeaderManager {
     // Create individual social link element
     createSocialLink(linkConfig) {
         const iconTemplate = document.querySelector(`#${linkConfig.icon}-icon`);
-        if (!iconTemplate) {
-            console.warn(`Icon template not found for: ${linkConfig.icon}`);
-            return null;
-        }
-
-        const iconClone = iconTemplate.content.cloneNode(true);
         const link = document.createElement('a');
         
         link.href = linkConfig.url;
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
         link.setAttribute('aria-label', `${linkConfig.name} Profile`);
-        
-        link.appendChild(iconClone);
+
+        if (iconTemplate) {
+            const iconClone = iconTemplate.content.cloneNode(true);
+            link.appendChild(iconClone);
+        } else {
+            console.warn(`Icon template not found for: ${linkConfig.icon}`);
+            link.appendChild(document.createTextNode('🔗'));
+        }
+
         link.appendChild(document.createTextNode(linkConfig.name));
         
         return link;
+    }
+
+    mergeSocialLinks(requiredLinks, configuredLinks) {
+        const byIcon = new Map();
+
+        requiredLinks.forEach((item) => byIcon.set(item.icon, item));
+        configuredLinks.forEach((item) => {
+            if (item && item.icon) byIcon.set(item.icon, item);
+        });
+
+        const preferredOrder = ['linkedin', 'github', 'email', 'leetcode'];
+        const ordered = [];
+
+        preferredOrder.forEach((icon) => {
+            if (byIcon.has(icon)) ordered.push(byIcon.get(icon));
+        });
+
+        byIcon.forEach((value, key) => {
+            if (!preferredOrder.includes(key)) ordered.push(value);
+        });
+
+        return ordered;
     }
 }

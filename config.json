@@ -1,7 +1,7 @@
 {
   "features": {
-    "about": true,
-    "achievements": true,
+    "about": false,
+    "achievements": false,
     "projects": true,
     "experience": true,
     "skills": true,
@@ -23,10 +23,16 @@
   "header": {
     "greeting": "Abir Azim Badhon",
     "tagline": "Backend Software Engineer",
-    "resume_pdf": "assets/resume.pdf",
+    "resume_pdf": "",
     "resume_download_name": "Abir-Azim-Badhon-Resume.pdf"
   },
   "social_links": [
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/badhon-khan-007/",
+      "icon": "linkedin",
+      "required": true
+    },
     {
       "name": "GitHub",
       "url": "https://github.com/AbirAzim",
@@ -37,6 +43,12 @@
       "name": "Email",
       "url": "mailto:badhonkhanbk007@gmail.com",
       "icon": "email",
+      "required": true
+    },
+    {
+      "name": "LeetCode",
+      "url": "https://leetcode.com/u/AbirAzimKhan/",
+      "icon": "leetcode",
       "required": true
     }
   ],
@@ -146,20 +158,41 @@
       {
         "company": "Data Savvy Inc.",
         "role": "Backend Developer (USA-based startup)",
-        "date": "2021 – Present",
+        "date": "Nov 2021 – Present",
         "responsibilities": [
           "<span class=\"experience-inline-brand\"><img src=\"https://dev.doerfy.com/doerfy-logo.svg\" alt=\"Doerfy logo\" loading=\"lazy\"></span><strong>Doerfy</strong> (<a href=\"https://dev.doerfy.com\" target=\"_blank\" rel=\"noopener noreferrer\">dev.doerfy.com</a>): Designed and maintained a monorepo GraphQL backend using GraphQL Yoga, TypeGraphQL, and Express — single /graphql endpoint with schema-first resolvers across 50+ domains (tasks, goals, stories, collaboration, content, subscriptions, notifications, admin, and more).",
-          "<span class=\"experience-inline-brand\"><img src=\"https://app.blending101.com/_next/image/?url=%2Fimages%2Flogo.png&w=1920&q=100\" alt=\"Blending101 logo\" loading=\"lazy\"></span><strong>Blending101 / Blending Recipe</strong> (<a href=\"https://app.blending101.com\" target=\"_blank\" rel=\"noopener noreferrer\">app.blending101.com</a>): Blending Recipe is a Node.js GraphQL API for a nutrition and recipe platform: recipes, ingredients, nutrients, member content, planning, and related CMS-style features, backed by MongoDB and exposed over Apollo / type-graphql.",
-          "<span class=\"experience-inline-brand\"><img src=\"https://development-bigtopa-bucket.s3.amazonaws.com/blending101/logo?v=\" alt=\"BigTopa logo\" loading=\"lazy\"></span><strong>Bigtopa</strong> (<a href=\"https://app.bigtopa.com\" target=\"_blank\" rel=\"noopener noreferrer\">app.bigtopa.com</a>): Built and maintained a multi-tenant backend (tenant-scoped data, Cognito auth, AppSync pipeline resolvers) for chat, spaces/rooms, DMs, meetings, blogs, and project tooling. Event-driven notifications (EventBridge → Lambda → external notification service + Pusher) for in-app, web-push, and meeting flows. TypeScript, AWS CDK (IaC), MongoDB/Mongoose, Lambda behind AppSync."
+          "<span class=\"experience-inline-brand\"><img src=\"https://development-bigtopa-bucket.s3.amazonaws.com/blending101/logo?v=\" alt=\"BigTopa logo\" loading=\"lazy\"></span><strong>Bigtopa</strong> (<a href=\"https://app.bigtopa.com\" target=\"_blank\" rel=\"noopener noreferrer\">app.bigtopa.com</a>): Built and maintained a multi-tenant backend (tenant-scoped data, Cognito auth, AppSync pipeline resolvers) for chat, spaces/rooms, DMs, meetings, blogs, and project tooling. Event-driven notifications (EventBridge → Lambda → external notification service + Pusher) for in-app, web-push, and meeting flows. TypeScript, AWS CDK (IaC), MongoDB/Mongoose, Lambda behind AppSync.",
+          "<span class=\"experience-inline-brand\"><img src=\"https://app.blending101.com/_next/image/?url=%2Fimages%2Flogo.png&w=1920&q=100\" alt=\"Blending101 logo\" loading=\"lazy\"></span><strong>Blending101 / Blending Recipe</strong> (<a href=\"https://app.blending101.com\" target=\"_blank\" rel=\"noopener noreferrer\">app.blending101.com</a>): Blending Recipe is a Node.js GraphQL API for a nutrition and recipe platform: recipes, ingredients, nutrients, member content, planning, and related CMS-style features, backed by MongoDB and exposed over Apollo / type-graphql."
         ]
       },
       {
         "company": "Stack Learner",
         "role": "Programming Trainer",
-        "date": "2019 – 2020",
+        "date": "Jun 2020 – Apr 2021",
         "responsibilities": [
+          "Mentored and taught programming fundamentals (C, Java, JavaScript, etc.) to approximately 100 students under the SL3 program.",
           "Delivered programming training through the SL3 framework for learners without a traditional CS background.",
-          "Designed and delivered a TypeScript video course on YouTube (Stack Learner): “TypeScript All You Need to Know.”"
+          "<strong>TypeScript on YouTube</strong> — <strong>Course</strong>: Designed and delivered a TypeScript video course on YouTube (Stack Learner): “TypeScript All You Need to Know,” simplifying core concepts for new programmers.",
+          "<a href=\"https://www.youtube.com/results?search_query=TypeScript+All+You+Need+to+Know+Stack+Learner\" target=\"_blank\" rel=\"noopener noreferrer\">TypeScript course link (Stack Learner)</a>",
+          "<a href=\"https://www.youtube.com/@stacklearner\" target=\"_blank\" rel=\"noopener noreferrer\">Stack Learner on YouTube</a>"
+        ]
+      },
+      {
+        "company": "Education",
+        "role": "Daffodil International University — B.Sc. in Software Engineering (Passing Year: 2025)",
+        "date": "",
+        "responsibilities": [
+          "Bachelor of Science in Software Engineering."
+        ]
+      },
+      {
+        "company": "Extra-curricular",
+        "role": "Creative & Community Activities",
+        "date": "",
+        "responsibilities": [
+          "Play guitar.",
+          "Write poems.",
+          "Mentor and teach programming for beginner learners."
         ]
       }
     ]
@@ -221,6 +254,18 @@
             "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/MongoDB.svg"
           },
           {
+            "name": "DynamoDB",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/DynamoDB-Light.svg"
+          },
+          {
+            "name": "PostgreSQL",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/PostgreSQL-Light.svg"
+          },
+          {
+            "name": "Redis",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Redis-Light.svg"
+          },
+          {
             "name": "Mongoose",
             "logo": "https://cdn.simpleicons.org/mongoose"
           },
@@ -256,6 +301,27 @@
           {
             "name": "Amazon EventBridge",
             "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/AWS-Light.svg"
+          },
+          {
+            "name": "Amazon DynamoDB",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/DynamoDB-Light.svg"
+          }
+        ]
+      },
+      {
+        "name": "Databases & ORM",
+        "items": [
+          {
+            "name": "NoSQL",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/MongoDB.svg"
+          },
+          {
+            "name": "SQL",
+            "logo": "https://cdn.simpleicons.org/postgresql"
+          },
+          {
+            "name": "TypeORM",
+            "logo": "https://cdn.simpleicons.org/typeorm"
           }
         ]
       },
@@ -275,6 +341,26 @@
             "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Terraform-Light.svg"
           },
           {
+            "name": "Docker",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Docker.svg"
+          },
+          {
+            "name": "CI/CD",
+            "logo": "https://cdn.simpleicons.org/githubactions"
+          },
+          {
+            "name": "GitHub Actions",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/GithubActions-Light.svg"
+          },
+          {
+            "name": "Jest",
+            "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Jest.svg"
+          },
+          {
+            "name": "Testing",
+            "logo": "https://cdn.simpleicons.org/testinglibrary"
+          },
+          {
             "name": "Notifications (in-app & web push)",
             "logo": "https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Firebase-Light.svg"
           }
@@ -287,8 +373,8 @@
   },
   "footer": {
     "show_social_links": true,
-    "show_built_with": true,
-    "built_with_text": "Built with care using vanilla JavaScript • Open source template",
+    "show_built_with": false,
+    "built_with_text": "",
     "tagline": "Open to backend-focused roles and interesting platform work."
   }
 }
