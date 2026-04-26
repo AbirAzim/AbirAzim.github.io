@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="220" viewBox="0 0 800 220" role="img" aria-label="GitHub metrics placeholder">
+  <rect width="800" height="220" fill="#0d1117"/>
+  <text x="32" y="92" fill="#58a6ff" font-family="Segoe UI, Arial, sans-serif" font-size="28">GitHub Metrics</text>
+  <text x="32" y="132" fill="#c9d1d9" font-family="Segoe UI, Arial, sans-serif" font-size="18">Run the 'Update GitHub Metrics' workflow after adding METRICS_TOKEN secret.</text>
+</svg>
