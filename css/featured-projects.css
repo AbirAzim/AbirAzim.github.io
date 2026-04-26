@@ -8,13 +8,12 @@
 }
 
 .featured-projects h2 {
-    color: var(--primary-neon);
-    font-size: 2.5rem;
+    color: var(--heading-color);
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
     text-align: center;
-    margin-bottom: 4rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 15px var(--primary-neon);
+    margin-bottom: var(--space-12);
+    font-weight: 700;
+    letter-spacing: -0.025em;
 }
 
 .featured-projects-grid {
@@ -115,12 +114,10 @@
 
 .featured-project-card .project-title {
     color: var(--fp-accent);
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0 0 20px rgba(94, 234, 212, 0.25);
+    letter-spacing: 0;
 }
 
 .featured-project-card .project-description {

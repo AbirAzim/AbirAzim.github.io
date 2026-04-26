@@ -38,23 +38,39 @@
     transition: var(--transition);
 }
 
+/* --- Light mode: show sun --- */
 .theme-switch .sun-icon {
     opacity: 1;
     transform: scale(1) rotate(0deg);
 }
 
-.theme-switch .moon-icon {
+.theme-switch .moon-icon,
+.theme-switch .dev-icon {
     position: absolute;
     opacity: 0;
     transform: scale(0.8) rotate(-30deg);
 }
 
-[data-theme="dark"] .theme-switch .sun-icon {
+/* --- Dark mode: show moon --- */
+[data-theme="dark"] .theme-switch .sun-icon,
+[data-theme="dark"] .theme-switch .dev-icon {
     opacity: 0;
     transform: scale(0.8) rotate(30deg);
 }
 
 [data-theme="dark"] .theme-switch .moon-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+/* --- Dev mode: show terminal icon --- */
+[data-theme="dev"] .theme-switch .sun-icon,
+[data-theme="dev"] .theme-switch .moon-icon {
+    opacity: 0;
+    transform: scale(0.8) rotate(30deg);
+}
+
+[data-theme="dev"] .theme-switch .dev-icon {
     opacity: 1;
     transform: scale(1) rotate(0deg);
 }

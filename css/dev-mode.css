@@ -1,0 +1,445 @@
+/* ============================================================
+   Developer Mode — Dark Terminal / Systems Engineering Aesthetic
+   Inspired by kernel debugging interfaces & system monitoring UIs
+   Activated by [data-theme="dev"] on <html>
+   ============================================================ */
+
+/* ---------- CSS Variables ---------- */
+:root[data-theme="dev"] {
+    color-scheme: dark;
+
+    --dev-bg:           #050810;
+    --dev-surface:      #090e1a;
+    --dev-card:         #0c1220;
+    --dev-card-alt:     #0f1628;
+    --dev-cyan:         #22d3ee;
+    --dev-cyan-dim:     #0e9ab5;
+    --dev-cyan-faint:   rgba(34, 211, 238, 0.08);
+    --dev-green:        #4ade80;
+    --dev-amber:        #fbbf24;
+    --dev-red:          #f87171;
+    --dev-border:       rgba(34, 211, 238, 0.12);
+    --dev-border-hover: rgba(34, 211, 238, 0.35);
+    --dev-text:         #94a3b8;
+    --dev-text-bright:  #cbd5e1;
+    --dev-text-muted:   #334155;
+    --dev-heading:      #e2e8f0;
+
+    /* Semantic overrides */
+    --background-color: var(--dev-bg);
+    --surface-color:    var(--dev-surface);
+    --card-background:  var(--dev-card);
+    --text-color:       var(--dev-text);
+    --text-muted:       #475569;
+    --heading-color:    var(--dev-heading);
+    --border-color:     var(--dev-border);
+
+    --primary-color:      var(--dev-cyan);
+    --primary-color-dark: var(--dev-cyan-dim);
+    --primary-50:         var(--dev-cyan-faint);
+
+    --gradient-primary: linear-gradient(135deg, var(--dev-cyan) 0%, #818cf8 100%);
+    --gradient-surface: linear-gradient(135deg, var(--dev-card) 0%, var(--dev-bg) 100%);
+
+    --shadow-xs:  0 1px 2px rgba(0,0,0,0.5);
+    --shadow-sm:  0 1px 4px rgba(0,0,0,0.6);
+    --shadow-md:  0 4px 16px rgba(0,0,0,0.6);
+    --shadow-lg:  0 8px 32px rgba(0,0,0,0.7);
+    --shadow-xl:  0 16px 48px rgba(0,0,0,0.8);
+    --shadow-2xl: 0 24px 64px rgba(0,0,0,0.85);
+    --focus-ring-color: var(--dev-cyan);
+}
+
+/* ---------- Monospace Font Everywhere ---------- */
+[data-theme="dev"],
+[data-theme="dev"] body {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, 'Courier New', monospace;
+    background: var(--dev-bg);
+    color: var(--dev-text);
+    font-size: 0.9rem;
+}
+
+[data-theme="dev"] h1,
+[data-theme="dev"] h2,
+[data-theme="dev"] h3,
+[data-theme="dev"] h4,
+[data-theme="dev"] h5,
+[data-theme="dev"] h6 {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+    letter-spacing: -0.01em;
+    color: var(--dev-heading);
+}
+
+[data-theme="dev"] p {
+    color: var(--dev-text);
+    font-size: 0.875rem;
+}
+
+/* ---------- Scanline + Vignette Overlay ---------- */
+[data-theme="dev"] body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    background:
+        /* scanlines */
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 3px,
+            rgba(0, 0, 0, 0.07) 3px,
+            rgba(0, 0, 0, 0.07) 4px
+        ),
+        /* edge vignette */
+        radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.35) 100%);
+}
+
+/* ---------- Body background grid ---------- */
+[data-theme="dev"] body {
+    background-image:
+        linear-gradient(rgba(34, 211, 238, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, 0.025) 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+/* ---------- Sections ---------- */
+[data-theme="dev"] section {
+    background: var(--dev-card);
+    border: 1px solid var(--dev-border);
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 0 1px rgba(34,211,238,0.04) inset,
+                var(--shadow-md);
+    position: relative;
+}
+
+[data-theme="dev"] section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dev-cyan), transparent);
+    opacity: 0.4;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+[data-theme="dev"] section:hover {
+    border-color: var(--dev-border-hover);
+    box-shadow: 0 0 24px rgba(34,211,238,0.07), var(--shadow-lg);
+    transform: translateY(-1px);
+}
+
+/* ---------- Section H2 — terminal prompt style ---------- */
+[data-theme="dev"] section h2 {
+    color: var(--dev-heading);
+    letter-spacing: -0.01em;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    position: relative;
+}
+
+[data-theme="dev"] section h2::before {
+    content: '$ ';
+    color: var(--dev-cyan);
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+[data-theme="dev"] section h2::after {
+    background: var(--dev-cyan);
+    box-shadow: 0 0 6px var(--dev-cyan);
+    width: 3rem;
+    height: 2px;
+}
+
+/* ---------- Header ---------- */
+[data-theme="dev"] header {
+    background: var(--dev-card);
+    border: 1px solid var(--dev-border);
+}
+
+[data-theme="dev"] .profile-img {
+    border: 2px solid var(--dev-border-hover);
+    box-shadow: 0 0 24px rgba(34,211,238,0.2);
+    filter: grayscale(15%);
+}
+
+[data-theme="dev"] h1 {
+    color: var(--dev-heading);
+}
+
+[data-theme="dev"] .tagline {
+    color: var(--dev-text);
+    font-size: 0.85rem;
+}
+
+[data-theme="dev"] .tagline::before {
+    content: '// ';
+    color: var(--dev-cyan);
+    opacity: 0.7;
+}
+
+/* ---------- Social Links ---------- */
+[data-theme="dev"] .social-links a {
+    background: var(--dev-surface);
+    border-color: var(--dev-border);
+    color: var(--dev-text);
+    font-size: 0.8rem;
+}
+
+[data-theme="dev"] .social-links a:hover {
+    background: var(--dev-cyan-faint);
+    border-color: var(--dev-border-hover);
+    color: var(--dev-cyan);
+    box-shadow: 0 0 12px rgba(34,211,238,0.15);
+}
+
+/* ---------- Theme Switch ---------- */
+[data-theme="dev"] .theme-switch {
+    background: var(--dev-card);
+    border: 1px solid var(--dev-border-hover);
+    color: var(--dev-cyan);
+    box-shadow: 0 0 10px rgba(34,211,238,0.15);
+}
+
+[data-theme="dev"] .theme-switch:hover {
+    background: var(--dev-cyan-faint);
+    border-color: var(--dev-cyan);
+    color: var(--dev-cyan);
+    box-shadow: 0 0 20px rgba(34,211,238,0.3);
+    transform: scale(1.05);
+}
+
+/* ---------- Skills ---------- */
+[data-theme="dev"] .skill-category {
+    background: var(--dev-card);
+    border-color: var(--dev-border);
+    box-shadow: none;
+}
+
+[data-theme="dev"] .skill-category:hover {
+    border-color: var(--dev-border-hover);
+    box-shadow: 0 0 16px rgba(34,211,238,0.08);
+}
+
+[data-theme="dev"] .skill-category::before {
+    background: var(--dev-cyan);
+}
+
+[data-theme="dev"] .skill-category h3 {
+    color: var(--dev-cyan);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+}
+
+[data-theme="dev"] .skill-count-badge {
+    background: var(--dev-cyan-faint);
+    color: var(--dev-cyan);
+    box-shadow: none;
+    border: 1px solid var(--dev-border);
+}
+
+[data-theme="dev"] .tech-item {
+    background: var(--dev-surface);
+    border-color: var(--dev-border);
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dev"] .tech-item:hover {
+    background: var(--dev-cyan-faint);
+    border-color: var(--dev-border-hover);
+    box-shadow: 0 0 8px rgba(34,211,238,0.12);
+}
+
+[data-theme="dev"] .tech-icon {
+    background: rgba(34,211,238,0.1);
+    border-radius: var(--radius-sm);
+    color: var(--dev-cyan);
+    box-shadow: none;
+}
+
+[data-theme="dev"] .tech-icon:has(.tech-icon-img) {
+    background: rgba(255,255,255,0.04);
+}
+
+[data-theme="dev"] .tech-name {
+    color: var(--dev-text-bright);
+    font-size: 0.7rem;
+}
+
+/* ---------- Experience ---------- */
+[data-theme="dev"] .experience-item {
+    background: var(--dev-card);
+    border-color: var(--dev-border);
+}
+
+[data-theme="dev"] .experience-item:hover {
+    border-color: var(--dev-border-hover);
+}
+
+[data-theme="dev"] .experience-header h3 {
+    color: var(--dev-heading);
+    font-size: 0.9rem;
+}
+
+[data-theme="dev"] .date {
+    color: var(--dev-cyan);
+    opacity: 0.7;
+    font-size: 0.75rem;
+}
+
+[data-theme="dev"] .experience-content ul li {
+    color: var(--dev-text);
+    font-size: 0.82rem;
+}
+
+/* ---------- Featured Projects ---------- */
+[data-theme="dev"] .featured-project-card {
+    background: var(--dev-card-alt);
+    border-color: var(--dev-border);
+}
+
+[data-theme="dev"] .featured-project-card:hover {
+    border-color: var(--dev-border-hover);
+    box-shadow: 0 0 20px rgba(34,211,238,0.1);
+}
+
+[data-theme="dev"] .featured-project-card .project-title {
+    color: var(--dev-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+[data-theme="dev"] .featured-project-card .project-description {
+    color: var(--dev-text);
+    font-size: 0.8rem;
+}
+
+[data-theme="dev"] .featured-project-card .project-btn {
+    background: transparent;
+    border-color: var(--dev-border-hover);
+    color: var(--dev-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+[data-theme="dev"] .featured-project-card .project-btn:hover {
+    background: var(--dev-cyan-faint);
+    box-shadow: 0 0 12px rgba(34,211,238,0.2);
+}
+
+[data-theme="dev"] .featured-project-card .tech-tag {
+    background: var(--dev-cyan-faint);
+    color: var(--dev-cyan);
+    border-color: var(--dev-border);
+    font-size: 0.7rem;
+    border-radius: var(--radius-sm);
+}
+
+/* ---------- Footer ---------- */
+[data-theme="dev"] .footer {
+    background: var(--dev-card);
+    border-color: var(--dev-border);
+}
+
+[data-theme="dev"] .footer a {
+    color: var(--dev-text);
+}
+
+[data-theme="dev"] .footer a:hover {
+    color: var(--dev-cyan);
+}
+
+[data-theme="dev"] .footer-tagline {
+    color: var(--dev-text-muted);
+    font-size: 0.78rem;
+}
+
+/* ---------- Chatbot ---------- */
+[data-theme="dev"] .chatbot-toggle {
+    background: var(--dev-card);
+    border: 1px solid var(--dev-border-hover);
+    color: var(--dev-cyan);
+    box-shadow: 0 0 14px rgba(34,211,238,0.2);
+}
+
+/* ---------- Mini Terminal ---------- */
+[data-theme="dev"] #mini-terminal.mini-terminal {
+    border-color: rgba(34,211,238,0.3);
+    background-color: #040710;
+}
+
+[data-theme="dev"] #mini-terminal .mini-terminal-titlebar {
+    background-color: #070c18;
+    border-bottom-color: rgba(34,211,238,0.15);
+}
+
+/* ---------- Scrollbar ---------- */
+[data-theme="dev"] ::-webkit-scrollbar {
+    width: 6px;
+}
+
+[data-theme="dev"] ::-webkit-scrollbar-track {
+    background: var(--dev-bg);
+}
+
+[data-theme="dev"] ::-webkit-scrollbar-thumb {
+    background: var(--dev-border-hover);
+    border-radius: 0;
+}
+
+[data-theme="dev"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--dev-cyan-dim);
+}
+
+/* ---------- Selection ---------- */
+[data-theme="dev"] ::selection {
+    background: rgba(34,211,238,0.25);
+    color: var(--dev-heading);
+}
+
+/* ---------- Links ---------- */
+[data-theme="dev"] a {
+    color: var(--dev-cyan);
+}
+
+/* ---------- Focus ---------- */
+[data-theme="dev"] :focus-visible {
+    outline-color: var(--dev-cyan);
+    box-shadow: 0 0 0 3px rgba(34,211,238,0.2);
+}
+
+/* ---------- Section gradient bar ---------- */
+[data-theme="dev"] .skills h2::after,
+[data-theme="dev"] section h2::after {
+    background: linear-gradient(90deg, var(--dev-cyan), transparent);
+    box-shadow: none;
+    width: 5rem;
+}
+
+/* ---------- Status badge for skills h3 dot ---------- */
+[data-theme="dev"] .skill-category h3::before {
+    background: var(--dev-cyan);
+    box-shadow: 0 0 4px var(--dev-cyan);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+    [data-theme="dev"] body {
+        background-size: 24px 24px;
+    }
+
+    [data-theme="dev"] body::after {
+        background:
+            repeating-linear-gradient(
+                0deg,
+                transparent 0px,
+                transparent 4px,
+                rgba(0,0,0,0.05) 4px,
+                rgba(0,0,0,0.05) 5px
+            );
+    }
+}

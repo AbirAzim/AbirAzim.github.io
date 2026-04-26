@@ -1,4 +1,6 @@
 // Theme Manager Module
+const THEMES = ['light', 'dark', 'dev'];
+
 export class ThemeManager {
     constructor() {
         this.themeSwitch = null;
@@ -8,12 +10,11 @@ export class ThemeManager {
     init() {
         this.themeSwitch = document.querySelector('.theme-switch');
 
-        // Saved choice wins; otherwise default dark (matches portfolio + Safari expectations)
+        // Saved choice wins; otherwise default dark
         const saved = localStorage.getItem('theme');
-        const initial = saved === 'light' || saved === 'dark' ? saved : 'dark';
+        const initial = THEMES.includes(saved) ? saved : 'dark';
         this.root.setAttribute('data-theme', initial);
 
-        // Add event listener for theme switch
         if (this.themeSwitch) {
             this.themeSwitch.addEventListener('click', () => {
                 this.toggleTheme();
@@ -22,11 +23,18 @@ export class ThemeManager {
     }
 
     toggleTheme() {
-        const currentTheme = this.root.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        this.root.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+        const current = this.root.getAttribute('data-theme');
+        const idx = THEMES.indexOf(current);
+        const next = THEMES[(idx + 1) % THEMES.length];
+
+        this.root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+
+        // Update aria-label to reflect the *next* theme the button will switch to
+        if (this.themeSwitch) {
+            const labels = { light: 'Switch to dark mode', dark: 'Switch to developer mode', dev: 'Switch to light mode' };
+            this.themeSwitch.setAttribute('aria-label', labels[next] ?? 'Switch theme');
+        }
     }
 
     getCurrentTheme() {

@@ -1,7 +1,7 @@
 // Main Application Module
 import { ConfigManager } from './config-manager.js?v=20260425-2';
 import { SEOManager } from './seo-manager.js';
-import { ThemeManager } from './theme-manager.js';
+import { ThemeManager } from './theme-manager.js?v=20260426-2';
 import { LoadingManager } from './loading-manager.js';
 import { SectionManager } from './section-manager.js?v=20260425-3';
 import { HeaderManager } from './header-manager.js?v=20260425-2';
