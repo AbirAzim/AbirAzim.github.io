@@ -10,12 +10,13 @@ export class ThemeManager {
     init() {
         this.themeSwitch = document.querySelector('.theme-switch');
 
-        // Saved choice wins; otherwise default dark
+        // Saved choice wins; otherwise default dev
         const saved = localStorage.getItem('theme');
-        const initial = THEMES.includes(saved) ? saved : 'dark';
+        const initial = THEMES.includes(saved) ? saved : 'dev';
         this.root.setAttribute('data-theme', initial);
 
         if (this.themeSwitch) {
+            this.updateAriaLabel(initial);
             this.themeSwitch.addEventListener('click', () => {
                 this.toggleTheme();
             });
@@ -30,11 +31,17 @@ export class ThemeManager {
         this.root.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
 
-        // Update aria-label to reflect the *next* theme the button will switch to
-        if (this.themeSwitch) {
-            const labels = { light: 'Switch to dark mode', dark: 'Switch to developer mode', dev: 'Switch to light mode' };
-            this.themeSwitch.setAttribute('aria-label', labels[next] ?? 'Switch theme');
-        }
+        this.updateAriaLabel(next);
+    }
+
+    updateAriaLabel(currentTheme) {
+        if (!this.themeSwitch) return;
+        const labels = {
+            light: 'Switch to dark mode',
+            dark: 'Switch to developer mode',
+            dev: 'Switch to light mode'
+        };
+        this.themeSwitch.setAttribute('aria-label', labels[currentTheme] ?? 'Switch theme');
     }
 
     getCurrentTheme() {

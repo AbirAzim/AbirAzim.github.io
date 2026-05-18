@@ -12,12 +12,34 @@
     "description": "Backend Software Engineer focused on scalable, reliable systems, GraphQL and AWS-backed services, and long-term maintainability.",
     "seo": {
       "title": "Abir Azim Badhon — Backend Software Engineer",
-      "description": "Backend Software Engineer focused on building scalable, reliable systems with clear architecture. Experience with GraphQL, AWS, MongoDB, and multi-tenant backends.",
-      "keywords": "Backend Engineer, TypeScript, GraphQL, AWS, MongoDB, Lambda, AppSync, CDK, Express, Dhaka, Bangladesh",
+      "description": "Backend Software Engineer in Dhaka, Bangladesh. Production GraphQL backends, multi-tenant AWS (AppSync, Lambda, CDK), MongoDB, and scalable API design.",
+      "keywords": "Abir Azim Badhon, Backend Software Engineer, TypeScript, Node.js, GraphQL, AWS, Lambda, AppSync, MongoDB, portfolio, Dhaka, Bangladesh",
       "author": "Abir Azim Badhon",
-      "og_image": "https://avatars.githubusercontent.com/AbirAzim",
+      "site_name": "Abir Azim Badhon — Portfolio",
+      "locale": "en_US",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical_url": "https://abirazim.github.io/",
+      "base_url": "https://abirazim.github.io/",
+      "alternate_urls": [
+        "https://abir-azim-github-io.vercel.app/"
+      ],
+      "og_image": "https://github.com/AbirAzim.png",
+      "og_image_alt": "Abir Azim Badhon — Backend Software Engineer portfolio",
       "twitter_card": "summary_large_image",
-      "base_url": "https://AbirAzim.github.io"
+      "twitter_site": "@AbirAzim",
+      "twitter_creator": "@AbirAzim",
+      "theme_color": "#0f172a",
+      "geo_region": "BD-C",
+      "geo_placename": "Dhaka, Bangladesh",
+      "knows_about": [
+        "TypeScript",
+        "Node.js",
+        "GraphQL",
+        "AWS",
+        "MongoDB",
+        "Multi-tenant architecture",
+        "Backend engineering"
+      ]
     }
   },
   "header": {

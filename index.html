@@ -8,32 +8,44 @@
         (function () {
             try {
                 var t = localStorage.getItem('theme');
-                if (t !== 'light' && t !== 'dark' && t !== 'dev') t = 'dark';
+                if (t !== 'light' && t !== 'dark' && t !== 'dev') t = 'dev';
                 document.documentElement.setAttribute('data-theme', t);
             } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'dark');
+                document.documentElement.setAttribute('data-theme', 'dev');
             }
         })();
     </script>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    
-    <!-- Open Graph / Facebook -->
+    <title>Abir Azim Badhon — Backend Software Engineer</title>
+    <meta name="description" content="Backend Software Engineer in Dhaka, Bangladesh. Production GraphQL backends, multi-tenant AWS (AppSync, Lambda, CDK), MongoDB, and scalable API design.">
+    <meta name="keywords" content="Abir Azim Badhon, Backend Software Engineer, TypeScript, Node.js, GraphQL, AWS, Lambda, AppSync, MongoDB, portfolio, Dhaka, Bangladesh">
+    <meta name="author" content="Abir Azim Badhon">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="geo.region" content="BD-C">
+    <meta name="geo.placename" content="Dhaka, Bangladesh">
+    <link rel="canonical" href="https://abirazim.github.io/">
+    <link rel="alternate" href="https://abir-azim-github-io.vercel.app/">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="">
-    <meta property="og:title" content="">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="">
+    <meta property="og:url" content="https://abirazim.github.io/">
+    <meta property="og:title" content="Abir Azim Badhon — Backend Software Engineer">
+    <meta property="og:description" content="Backend Software Engineer in Dhaka, Bangladesh. Production GraphQL backends, multi-tenant AWS (AppSync, Lambda, CDK), MongoDB, and scalable API design.">
+    <meta property="og:image" content="https://github.com/AbirAzim.png">
+    <meta property="og:image:alt" content="Abir Azim Badhon — Backend Software Engineer portfolio">
+    <meta property="og:site_name" content="Abir Azim Badhon — Portfolio">
+    <meta property="og:locale" content="en_US">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="">
-    <meta property="twitter:url" content="">
-    <meta property="twitter:title" content="">
-    <meta property="twitter:description" content="">
-    <meta property="twitter:image" content="">
-
-    <title></title>
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@AbirAzim">
+    <meta name="twitter:creator" content="@AbirAzim">
+    <meta name="twitter:url" content="https://abirazim.github.io/">
+    <meta name="twitter:title" content="Abir Azim Badhon — Backend Software Engineer">
+    <meta name="twitter:description" content="Backend Software Engineer in Dhaka, Bangladesh. Production GraphQL backends, multi-tenant AWS (AppSync, Lambda, CDK), MongoDB, and scalable API design.">
+    <meta name="twitter:image" content="https://github.com/AbirAzim.png">
+    <meta name="twitter:image:alt" content="Abir Azim Badhon — Backend Software Engineer portfolio">
     <link rel="icon" type="image/png" href="https://github.com/AbirAzim.png">
     <link rel="apple-touch-icon" href="https://github.com/AbirAzim.png">
     <link rel="preload" href="css/main.css" as="style">
@@ -141,22 +153,56 @@
     <!-- Preload for better performance -->
     <link rel="preload" href="js/fluid-background.js" as="script">
     
-    <script type="application/ld+json">
+    <script type="application/ld+json" data-seo-schema>
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "",
-      "url": "",
-      "sameAs": [],
-      "jobTitle": "",
-      "worksFor": {
-        "@type": "Organization",
-        "name": ""
-      }
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://abirazim.github.io/#website",
+          "url": "https://abirazim.github.io/",
+          "name": "Abir Azim Badhon — Portfolio",
+          "description": "Backend Software Engineer in Dhaka, Bangladesh. Production GraphQL backends, multi-tenant AWS, MongoDB, and scalable API design.",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://abirazim.github.io/#person" }
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://abirazim.github.io/#profilepage",
+          "url": "https://abirazim.github.io/",
+          "name": "Abir Azim Badhon — Backend Software Engineer",
+          "isPartOf": { "@id": "https://abirazim.github.io/#website" },
+          "mainEntity": { "@id": "https://abirazim.github.io/#person" },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://abirazim.github.io/#person",
+          "name": "Abir Azim Badhon",
+          "url": "https://abirazim.github.io/",
+          "image": "https://github.com/AbirAzim.png",
+          "jobTitle": "Backend Software Engineer",
+          "email": "badhonkhanbk007@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Dhaka",
+            "addressCountry": "BD"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/badhon-khan-007/",
+            "https://github.com/AbirAzim",
+            "https://leetcode.com/u/AbirAzimKhan/"
+          ],
+          "knowsAbout": ["TypeScript", "Node.js", "GraphQL", "AWS", "MongoDB", "Backend engineering"]
+        }
+      ]
     }
     </script>
 </head>
 <body>
+    <noscript>
+        <p><strong>Abir Azim Badhon</strong> — Backend Software Engineer in Dhaka, Bangladesh. Portfolio covering production GraphQL backends, multi-tenant AWS (AppSync, Lambda, CDK), MongoDB, and scalable API design. Contact: badhonkhanbk007@gmail.com.</p>
+    </noscript>
     <div class="site-backdrop" aria-hidden="true"></div>
     <!-- Loading Screen -->
     <div id="loading-screen" role="progressbar" aria-label="Loading portfolio">
@@ -190,7 +236,7 @@
         </svg>
     </button>
 
-    <div class="container content-hidden" id="main-content">
+    <main class="container content-hidden" id="main-content">
         <header>
             <img src="" alt="Profile picture" class="profile-img" loading="eager">
             <h1></h1>
@@ -246,7 +292,7 @@
             <h2></h2>
             <div class="skills-grid"></div>
         </section>
-    </div>
+    </main>
 
     <!-- After main: scroll order is payoneer → footer (footer never stacks over this card) -->
     <aside class="payoneer-panel" aria-label="WhatsApp, Buy me a coffee, Payoneer">
