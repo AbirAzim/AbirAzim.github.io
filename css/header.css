@@ -65,6 +65,29 @@ h1 {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+.professional-summary {
+    font-size: clamp(var(--text-base), 2.5vw, var(--text-xl));
+    color: var(--text-color);
+    margin: 0 auto var(--space-6);
+    max-width: 720px;
+    line-height: 1.55;
+    font-weight: 500;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    opacity: 0.95;
+}
+
+.name-aliases {
+    font-size: clamp(var(--text-sm), 2.2vw, var(--text-lg));
+    color: var(--text-muted);
+    margin: calc(var(--space-2) * -1) auto var(--space-4);
+    max-width: 640px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    opacity: 0.92;
+    font-weight: 500;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 .tagline {
     font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
     color: var(--text-muted);

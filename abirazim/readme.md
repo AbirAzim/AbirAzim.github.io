@@ -10,8 +10,7 @@ AI-focused full stack developer building modern, secure, and interactive web exp
 - Backend Software Engineer based in Dhaka, Bangladesh.
 - Building an AI-powered portfolio with cyberpunk aesthetics and modular architecture.
 - Focused on secure deployments: full chat features on Vercel, safe static mode on GitHub Pages.
-- Tech interests: AI integrations, full stack apps, and performance-first frontend experiences.
-
+- Tech interests: AI integrations, full stack apps, and performance-first frontend experiences
 ## Current Project Highlights
 - AI chatbot with provider fallback and secure server-side API handling.
 - Dynamic content from config-driven setup.

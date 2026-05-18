@@ -6,18 +6,51 @@ export class HeaderManager {
         const githubUsername = config.github_username || this.extractGithubUsername(config.social_links);
         
         // Update profile image
-        if (githubUsername) {
-            document.querySelector('.profile-img').src = `https://avatars.githubusercontent.com/${githubUsername}`;
+        const profileImg = document.querySelector('.profile-img');
+        if (githubUsername && profileImg) {
+            profileImg.src = `https://avatars.githubusercontent.com/${githubUsername}`;
         }
-        
+        if (profileImg) {
+            const displayName = config.header?.greeting || 'Abir Azim Badhon';
+            profileImg.alt = `${displayName} — Badhon Khan (bk007)`;
+        }
+
         // Update header text
         document.querySelector('h1').textContent = config.header.greeting;
+        this.updateSearchAliases(config.header?.search_aliases);
         document.querySelector('.tagline').textContent = config.header.tagline;
+        this.updateProfessionalSummary(
+            config.header?.professional_summary || config.site?.seo?.professional_summary
+        );
 
         this.updateResumeButton(config);
 
         // Update social links
         this.updateSocialLinks(config);
+    }
+
+    updateProfessionalSummary(summaryText) {
+        const el = document.querySelector('.professional-summary');
+        if (!el) return;
+        const text = (summaryText || '').trim();
+        if (!text) {
+            el.hidden = true;
+            return;
+        }
+        el.textContent = text;
+        el.hidden = false;
+    }
+
+    updateSearchAliases(aliasesText) {
+        const el = document.querySelector('.name-aliases');
+        if (!el) return;
+        const text = (aliasesText || '').trim();
+        if (!text) {
+            el.hidden = true;
+            return;
+        }
+        el.textContent = text;
+        el.hidden = false;
     }
 
     updateResumeButton(config) {

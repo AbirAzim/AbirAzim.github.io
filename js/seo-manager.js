@@ -89,14 +89,35 @@ export class SEOManager {
         const emailLink = config.social_links?.find((l) => l.icon === 'email');
         const knowsAbout = seo.knows_about || [];
 
+        const alternateNames = Array.isArray(seo.alternate_names)
+            ? seo.alternate_names.filter(Boolean)
+            : [];
+
+        const professionalSummary =
+            config.header?.professional_summary ||
+            seo.professional_summary ||
+            description;
+
         const person = {
             '@type': 'Person',
             '@id': personId,
             name: config.header?.greeting || seo.author,
+            alternateName: alternateNames.length ? alternateNames : undefined,
+            givenName: 'Abir Azim',
+            familyName: 'Badhon',
+            additionalName: 'Khan',
+            nickname: 'bk007',
             url: canonical,
             image: ogImage,
-            jobTitle: config.header?.tagline || 'Backend Software Engineer',
-            description,
+            jobTitle: 'Backend Software Engineer',
+            description: professionalSummary,
+            hasOccupation: {
+                '@type': 'Occupation',
+                name: 'Backend Software Engineer',
+                description: seo.years_experience
+                    ? `${seo.years_experience} years software development; production GraphQL, AWS, MongoDB`
+                    : 'Production GraphQL, AWS, and scalable backend systems'
+            },
             email: emailLink?.url?.replace(/^mailto:/i, '') || undefined,
             sameAs,
             knowsAbout: knowsAbout.length ? knowsAbout : undefined

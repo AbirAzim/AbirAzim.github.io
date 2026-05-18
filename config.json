@@ -1,6 +1,6 @@
 {
   "features": {
-    "about": false,
+    "about": true,
     "achievements": false,
     "projects": true,
     "experience": true,
@@ -8,12 +8,23 @@
     "github_projects": true
   },
   "site": {
-    "title": "Abir Azim Badhon — Backend Software Engineer",
-    "description": "Backend Software Engineer focused on scalable, reliable systems, GraphQL and AWS-backed services, and long-term maintainability.",
+    "title": "Abir Azim Badhon | Badhon Khan (bk007) — Backend Software Engineer",
+    "description": "Backend software engineer with 5+ years experience — production GraphQL, AWS, and scalable APIs. Portfolio of Abir Azim Badhon (Badhon Khan, bk007).",
     "seo": {
-      "title": "Abir Azim Badhon — Backend Software Engineer",
-      "description": "Backend Software Engineer in Dhaka, Bangladesh. Production GraphQL backends, multi-tenant AWS (AppSync, Lambda, CDK), MongoDB, and scalable API design.",
-      "keywords": "Abir Azim Badhon, Backend Software Engineer, TypeScript, Node.js, GraphQL, AWS, Lambda, AppSync, MongoDB, portfolio, Dhaka, Bangladesh",
+      "title": "Abir Azim Badhon — Backend Software Engineer (5+ Years Experience)",
+      "description": "Backend software engineer with 5+ years of software development experience and 4+ years building production GraphQL and AWS backends. Hire Abir Azim Badhon (Badhon Khan, bk007) in Dhaka, Bangladesh.",
+      "keywords": "backend software engineer, backend software engineer 5 years experience, best backend software engineer, senior backend engineer, GraphQL backend developer, AWS backend engineer, Abir Azim Badhon, Badhon Khan, bk007, Dhaka, Bangladesh",
+      "years_experience": "5+",
+      "professional_summary": "Backend software engineer with 5+ years in software development — production GraphQL monorepos, multi-tenant AWS (AppSync, Lambda, CDK), and MongoDB APIs since 2021.",
+      "alternate_names": [
+        "Abir Azim Badhon",
+        "abir azim badhon",
+        "Badhon Khan",
+        "badhon khan",
+        "bk007",
+        "badhonkhanbk007",
+        "AbirAzim"
+      ],
       "author": "Abir Azim Badhon",
       "site_name": "Abir Azim Badhon — Portfolio",
       "locale": "en_US",
@@ -44,7 +55,9 @@
   },
   "header": {
     "greeting": "Abir Azim Badhon",
-    "tagline": "Backend Software Engineer",
+    "search_aliases": "Abir Azim Badhon · Badhon Khan · bk007",
+    "tagline": "Backend Software Engineer · 5+ years experience",
+    "professional_summary": "Backend software engineer with 5+ years in software development — production GraphQL, AWS, and scalable APIs for live products.",
     "resume_pdf": "",
     "resume_download_name": "Abir-Azim-Badhon-Resume.pdf"
   },
@@ -76,8 +89,9 @@
   ],
   "github_username": "AbirAzim",
   "about": {
+    "title": "About — Backend software engineer (5+ years)",
     "paragraphs": [
-      "Backend Software Engineer focused on building scalable, reliable systems with clear architecture and long-term maintainability in mind. I enjoy turning complex requirements into simple, well-structured solutions and writing code that is easy to reason about under growth and change.",
+      "I am a backend software engineer with 5+ years of software development experience, including 4+ years shipping production GraphQL and AWS backends for real users. I focus on scalable, reliable systems, clear architecture, and APIs that stay maintainable as products grow.",
       "<strong>Contact</strong><br><a href=\"mailto:badhonkhanbk007@gmail.com\">badhonkhanbk007@gmail.com</a><br>Dhaka, Bangladesh",
       "<strong>Education</strong><br>Daffodil International University — B.Sc. in Software Engineering"
     ]
@@ -397,6 +411,6 @@
     "show_social_links": true,
     "show_built_with": false,
     "built_with_text": "",
-    "tagline": "Open to backend-focused roles and interesting platform work."
+    "tagline": "Abir Azim Badhon · Badhon Khan · bk007 — open to backend-focused roles."
   }
 }

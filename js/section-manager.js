@@ -70,10 +70,13 @@ export class SectionManager {
     // Update about section
     updateAboutSection(config) {
         const aboutSection = document.querySelector('.about');
+        const title = config.about?.title || 'About';
+        const titleHtml = `<h2>${title}</h2>`;
         if (config.about?.paragraphs?.length) {
-            aboutSection.innerHTML = config.about.paragraphs.map(p => `<p>${p}</p>`).join('');
+            const body = config.about.paragraphs.map((p) => `<p>${p}</p>`).join('');
+            aboutSection.innerHTML = titleHtml + body;
         } else {
-            aboutSection.innerHTML = '<p>Welcome to my portfolio!</p>';
+            aboutSection.innerHTML = `${titleHtml}<p>Welcome to my portfolio!</p>`;
         }
     }
 
