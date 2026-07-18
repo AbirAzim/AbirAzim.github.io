@@ -41,6 +41,11 @@ Backend Software Engineer focused on building scalable, reliable systems with cl
 - CGPA intentionally omitted (as requested)
 
 ## Projects
+- Ke Jitbe (personal) - social comparison voting app
+  - Web: https://www.kejitbe.app/
+  - Play Store: https://play.google.com/store/apps/details?id=com.ctrend.app
+  - Repo (backend): https://github.com/AbirAzim/CTrend
+  - Description: Full-stack product (formerly CTrend) with NestJS GraphQL backend and React/Expo clients — comparisons, real-time voting, feed, chat, coins, campaigns.
 - Bigtopa - multi-tenant platform backend  
   Repo: https://github.com/AbirAzim  
   Live: https://app.bigtopa.com
@@ -50,10 +55,6 @@ Backend Software Engineer focused on building scalable, reliable systems with cl
 - Blending101 - Blending Recipe API  
   Repo: https://github.com/AbirAzim  
   Live: https://app.blending101.com
-- CTrend
-  - Repo: https://github.com/AbirAzim/CTrend
-  - Live: https://c-trend.vercel.app
-  - Description: Social app for image comparisons/polls with real-time voting updates, accounts, friends, and profiles.
 - typespeed
   - Repo: https://github.com/AbirAzim/typespeed
   - Live: https://typespeedtesting.netlify.app

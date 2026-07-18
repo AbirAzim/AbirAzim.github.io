@@ -204,6 +204,40 @@ export class SectionManager {
         // Create tech tags if available
         const techTags = project.technologies ? 
             project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('') : '';
+
+        const linkArrow = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+        `;
+
+        const normalizedLinks = Array.isArray(project.links) && project.links.length
+            ? project.links
+            : (project.link
+                ? [typeof project.link === 'object' ? project.link : { url: project.link, title: 'View Project' }]
+                : []);
+
+        const linksHtml = normalizedLinks.length
+            ? normalizedLinks.map((entry) => {
+                const url = typeof entry === 'object' ? entry.url : entry;
+                const title = typeof entry === 'object' ? (entry.title || 'View Project') : 'View Project';
+                if (!url) return '';
+                return `
+                    <a href="${url}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="project-btn"
+                       aria-label="${title} — ${project.name}">
+                        ${title}
+                        ${linkArrow}
+                    </a>
+                `;
+            }).join('')
+            : `
+                <span class="project-btn" style="opacity: 0.6; cursor: not-allowed;">
+                    Coming Soon
+                </span>
+            `;
         
         projectCard.innerHTML = `
             <div class="project-image">
@@ -217,22 +251,7 @@ export class SectionManager {
                 <p class="project-description">${descriptionText}</p>
                 ${techTags ? `<div class="project-tech">${techTags}</div>` : ''}
                 <div class="project-links">
-                    ${project.link ? `
-                        <a href="${typeof project.link === 'object' ? project.link.url : project.link}" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="project-btn"
-                           aria-label="View ${project.name} project">
-                            View Project
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </a>
-                    ` : `
-                        <span class="project-btn" style="opacity: 0.6; cursor: not-allowed;">
-                            Coming Soon
-                        </span>
-                    `}
+                    ${linksHtml}
                 </div>
             </div>
         `;

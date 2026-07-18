@@ -1,12 +1,12 @@
 // Main Application Module
-import { ConfigManager } from './config-manager.js?v=20260425-2';
+import { ConfigManager } from './config-manager.js?v=20260718-1';
 import { SEOManager } from './seo-manager.js';
-import { ThemeManager } from './theme-manager.js?v=20260426-2';
+import { ThemeManager } from './theme-manager.js?v=20260718-1';
 import { LoadingManager } from './loading-manager.js';
-import { SectionManager } from './section-manager.js?v=20260425-3';
-import { HeaderManager } from './header-manager.js?v=20260425-2';
-import { GitHubProjectsManager } from './github-projects-manager.js?v=20260425-2';
-import { FooterManager } from './footer-manager.js?v=20260425-4';
+import { SectionManager } from './section-manager.js?v=20260718-1';
+import { HeaderManager } from './header-manager.js?v=20260718-1';
+import { GitHubProjectsManager } from './github-projects-manager.js?v=20260718-1';
+import { FooterManager } from './footer-manager.js?v=20260718-1';
 import { FluidBackground } from './fluid-background.js';
 import { RainLayer } from './rain-layer.js';
 import { ChatbotManager } from './chatbot.js';

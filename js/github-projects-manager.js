@@ -111,10 +111,10 @@ export class GitHubProjectsManager {
     getManualProjects() {
         return [
             {
-                name: 'CTrend',
-                description: 'CTrend is a social app where people post image comparisons (two or more options side by side), others vote on what they prefer, and everyone sees results update in real time—a mix of a photo feed and polls, with accounts, friends, and profiles so the community can compare and share opinions.',
+                name: 'Ke Jitbe (CTrend)',
+                description: 'Ke Jitbe is my personal social comparison app — post side-by-side options, vote in real time, chat, earn coins, and follow friends. NestJS GraphQL backend + React/Expo clients. Web: kejitbe.app · Android on Google Play.',
                 html_url: 'https://github.com/AbirAzim/CTrend',
-                homepage: 'https://c-trend.vercel.app'
+                homepage: 'https://www.kejitbe.app/'
             },
             {
                 name: 'typespeed',

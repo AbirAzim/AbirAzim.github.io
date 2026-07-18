@@ -58,7 +58,7 @@
     "search_aliases": "Abir Azim Badhon · Badhon Khan · bk007",
     "tagline": "Backend Software Engineer · 5+ years experience",
     "professional_summary": "Backend software engineer with 5+ years in software development — production GraphQL, AWS, and scalable APIs for live products.",
-    "resume_pdf": "",
+    "resume_pdf": "assets/resume.pdf",
     "resume_download_name": "Abir-Azim-Badhon-Resume.pdf"
   },
   "social_links": [
@@ -144,6 +144,32 @@
   "projects": {
     "title": "Featured work",
     "items": [
+      {
+        "name": "Ke Jitbe — social comparison voting app",
+        "date": "",
+        "picture": "assets/ke-jitbe-logo.png",
+        "image_fit": "contain",
+        "description": [
+          "Personal full-stack product (formerly CTrend): side-by-side image comparisons, real-time voting, feed, chat, coins, and campaigns — shipped as web and Android.",
+          "Frontend: React 19 + Vite web and Expo / React Native mobile against one GraphQL API. Backend: NestJS, Apollo GraphQL, MongoDB, Cloudflare R2, Stripe, FCM.",
+          "Live on the web and Google Play."
+        ],
+        "technologies": ["NestJS", "GraphQL", "React", "Expo", "MongoDB"],
+        "links": [
+          {
+            "url": "https://www.kejitbe.app/",
+            "title": "Web app"
+          },
+          {
+            "url": "https://play.google.com/store/apps/details?id=com.ctrend.app",
+            "title": "Play Store"
+          }
+        ],
+        "link": {
+          "url": "https://www.kejitbe.app/",
+          "title": "Open Ke Jitbe"
+        }
+      },
       {
         "name": "Bigtopa — multi-tenant platform backend",
         "date": "",
